@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistente Tático de Pré-Lançamento | Reinado Delta (Pokémon TCG)</title>
+  <meta name="description" content="Assistente de montagem e otimização de baralhos de 40 cartas para o torneio de pré-lançamento da coleção Reinado Delta de Pokémon TCG.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-badge">POKÉMON TCG</span>
+        <span class="logo-title">Reinado Delta • Assistente de Torneio</span>
+      </div>
+      <div class="header-actions">
+        <a href="assistente_offline.html" download="assistente_reinado_delta.html" class="btn-offline-download" title="Baixe este arquivo único e use no celular sem instalar nada e sem internet!">
+          📱 Modo Celular (Offline)
+        </a>
+        <button class="btn-mobile-help" onclick="toggleMobileHelpModal()" title="Instruções para rodar no celular">
+          ❓ Como Usar
+        </button>
+        <div class="event-status">
+          <span class="status-dot"></span>
+          <span>10 Boosters (Copag)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modal / Banner de Instruções para Uso no Celular -->
+  <div id="mobileHelpModal" class="mobile-help-box" style="display:none;">
+    <div class="mobile-help-header">
+      <span>📲 Como Rodar no Celular Sem Instalar Nada</span>
+      <button class="btn-close-help" onclick="toggleMobileHelpModal()">✕</button>
+    </div>
+    <div class="mobile-help-content">
+      <div class="help-step">
+        <strong>1. Arquivo Único:</strong> Toque no botão verde <em>"📱 Modo Celular (Offline)"</em> acima para baixar o arquivo <code>assistente_reinado_delta.html</code>.
+      </div>
+      <div class="help-step">
+        <strong>2. No Celular:</strong> Você também pode mandar esse arquivo para si mesmo pelo WhatsApp ou Drive e abrir direto no Chrome ou Safari.
+      </div>
+      <div class="help-step">
+        <strong>3. Zero Internet:</strong> O arquivo roda 100% offline dentro da loja, sem plano de dados e sem falhas de sinal.
+      </div>
+      <div class="help-tip">
+        💡 <em>Dica de App Nativo:</em> No Safari (iOS) ou Chrome (Android), toque em <strong>"Adicionar à Tela de Início"</strong> para usar em tela cheia como se fosse um app instalado da loja!
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+
+    <!-- Stepper Navigation -->
+    <nav class="stepper" id="stepperNav">
+      <button class="step-tab active" data-step="view-kit" id="tab-kit">
+        <span>1. Selecionar Kit & Núcleo</span>
+      </button>
+      <button class="step-tab" data-step="view-pulls" id="tab-pulls">
+        <span>2. Inserir Pulls</span>
+      </button>
+      <button class="step-tab" data-step="view-results" id="tab-results">
+        <span>3. Deck Otimizado & Saúde Anti-Brick</span>
+      </button>
+    </nav>
+
+    <!-- ETAPA 1: SELEÇÃO DO KIT & NÚCLEO INTOCÁVEL -->
+    <section class="section-view active" id="view-kit">
+      <div class="section-header">
+        <h2 class="section-title">Qual Kit Promocional você pegou?</h2>
+        <p class="section-desc">Selecione o baralho promocional da sua caixa de Build & Battle. Abaixo você poderá ver o Núcleo Intocável e conferir a lista com a caixa física.</p>
+      </div>
+
+      <div class="kits-grid" id="kitsContainer">
+        <!-- Renderizado dinamicamente via data.js -->
+      </div>
+
+      <!-- Detalhamento do Kit Selecionado: Núcleo Intocável e Debate -->
+      <div id="kitDetailPanel"></div>
+
+      <button class="btn-action-primary" onclick="switchStep('view-pulls')" id="btnGoToPulls">
+        Continuar para Entrada de Pulls dos Boosters →
+      </button>
+    </section>
+
+    <!-- ETAPA 2: ENTRADA DOS PULLS -->
+    <section class="section-view" id="view-pulls">
+      <div class="section-header">
+        <h2 class="section-title">O que você tirou nos 10 Boosters (60 Cartas)?</h2>
+        <p class="section-desc">Informe as cartas abertas nos seus 10 boosters físicos de 6 cartas (formato nacional Copag = 60 cartas no total). As sugestões abaixo já estão filtradas e otimizadas para o seu kit selecionado.</p>
+      </div>
+
+      <!-- Banner de Sugestões Específicas do Kit Escolhido -->
+      <div id="kitSuggestionBannerContainer"></div>
+
+      <!-- Quick Text Parser Box -->
+      <div class="input-options-box">
+        <div class="quick-text-parser">
+          <label for="quickTextInput" style="font-weight:600; font-size:0.9rem; color:#38bdf8;">
+            ⚡ Entrada Rápida por Digitação / Voz:
+          </label>
+          <textarea id="quickTextInput" placeholder="Exemplo: 1 delibird, 2 zinia, 1 arcanine com growlithe, 1 tubo de lava, 1 electabuzz extra"></textarea>
+          <button class="btn-parse" id="btnParseText">Identificar e Adicionar Cartas</button>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted);">
+          Dica: Você também pode usar os seletores individuais abaixo com 1 clique (+ / -).
+        </p>
+      </div>
+
+      <!-- Grid de Cartas Relevantes / Staples -->
+      <div class="staples-grid" id="staplesContainer">
+        <!-- Renderizado dinamicamente via data.js com ordenação por sinergia -->
+      </div>
+
+      <button class="btn-action-primary" onclick="switchStep('view-results')" id="btnGoToResults">
+        ⚡ Gerar Deck Otimizado de 40 Cartas e Estratégia →
+      </button>
+    </section>
+
+    <!-- ETAPA 3: RESULTADOS, SAÚDE ANTI-BRICK E TÁTICAS -->
+    <section class="section-view" id="view-results">
+      <div class="section-header">
+        <h2 class="section-title">Seu Baralho Otimizado de Torneio</h2>
+        <p class="section-desc">Cortes e adições calculados com núcleo protegido, balanço anti-brick e plano de ataque todo turno.</p>
+      </div>
+
+      <!-- Barra de Troca Rápida de Deck para Comparação Imediata no Celular -->
+      <div class="quick-deck-switcher-bar">
+        <span class="switcher-label">🔄 Deck em Análise:</span>
+        <div class="switcher-buttons">
+          <button class="btn-switch-deck" id="switch-btn-magmortar" onclick="selectKitAndRecalculate('magmortar')">⚡ Mag-Vire</button>
+          <button class="btn-switch-deck" id="switch-btn-enamorus" onclick="selectKitAndRecalculate('enamorus')">🌪️ Gênios</button>
+          <button class="btn-switch-deck" id="switch-btn-kommo" onclick="selectKitAndRecalculate('kommo')">🐉 Kommo-o</button>
+          <button class="btn-switch-deck" id="switch-btn-masquerain" onclick="selectKitAndRecalculate('masquerain')">🐛 Masquerain</button>
+        </div>
+      </div>
+
+      <!-- Painel de Saúde do Deck (Anti-Brick Dashboard) -->
+      <div id="deckHealthDashboard" style="margin-bottom: 20px;"></div>
+
+      <div class="results-container">
+        
+        <!-- Coluna Esquerda: Recomendações, Cortes e Táticas -->
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          
+          <!-- Plano para Atacar Todo Turno -->
+          <div class="box-panel">
+            <h3 class="panel-heading">⚡ Plano para Atacar Todo Turno</h3>
+            <div id="attackPlanContainer"></div>
+          </div>
+
+          <!-- Painel de Cortes e Adições -->
+          <div class="box-panel" id="panelCutsAndAdds">
+            <h3 class="panel-heading">✂️ Cortes e Adições Recomendados</h3>
+            <div id="preSwapsContainer"></div>
+            <div id="cutsContainer"></div>
+            <div id="addsContainer"></div>
+            <div id="standbyCutsContainer"></div>
+          </div>
+
+          <!-- Estação de Energia do Balcão & Alertas -->
+          <div class="box-panel" id="panelEnergyAndAlerts">
+            <h3 class="panel-heading">⚡ Estação de Energia do Balcão & Alertas</h3>
+            <div id="energyStationContainer"></div>
+            <div id="warningsContainer" style="margin-top:12px;"></div>
+          </div>
+
+          <!-- Painel de Confrontos (Matchups) -->
+          <div class="box-panel" id="panelMatchups">
+            <div class="panel-heading">
+              <span>⚔️ Guia de Partida & Confrontos (VS Cada Arquétipo)</span>
+            </div>
+            <div id="turnOrderBanner" style="margin-bottom:14px;"></div>
+            <div id="matchupFilterContainer" style="margin-bottom:14px;"></div>
+            <div id="tacticsMatchups"></div>
+          </div>
+
+        </div>
+
+        <!-- Coluna Direita: Lista Final do Baralho -->
+        <div>
+          <div class="box-panel">
+            <div class="panel-heading">
+              <span>Baralho Final</span>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="deck-count-badge" id="deckCountBadge">40 Cartas</span>
+                <button class="btn-clipboard" id="btnCopyDeck">📋 Copiar Lista</button>
+              </div>
+            </div>
+            
+            <div id="deckListContainer"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="btn-action-primary" style="background:linear-gradient(135deg, #0284c7, #2563eb); margin-top:20px;" onclick="switchStep('view-pulls')">
+        ← Voltar e Ajustar Cartas Abertas
+      </button>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

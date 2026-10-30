@@ -1,7 +1,7 @@
 # Contexto do Projeto: Pré-Lançamento Reinado Delta (Pokémon TCG)
 
 - **Repositório:** `prereleasepoke`
-- **Última Atualização:** 2026-10-30 (v1.7.0)
+- **Última Atualização:** 2026-10-30 (v1.8.0)
 - **Domínio:** Pokémon Trading Card Game (TCG) — Formato Selado / Pré-lançamento (Build & Battle) da Coleção Reinado Delta (Delta Reign ME6/DLR & Storm Emeralda M6).
 - **Fontes da Comunidade Integradas:** Reddit (`/r/PTCGL`), PokéCottage (*Card List 141 cards*), Bugado Playz (*W4MQfFQcOqE*), VINTCG (*sufn0o0djFk*), TiuSam (*GWcZHfw8tb0*) e TCGplayer (*Buyer's Guide*).
 
@@ -64,3 +64,13 @@ Para viabilizar o uso direto no smartphone durante o evento físico na loja de c
 - **Arquivo Único Autocontido (`assistente_offline.html`):** Compilado via `empacotar_celular.py`, embute inline todo o CSS, dados dos 4 kits e 16 confrontos, motor determinístico e aplicação JS em ~150 KB. Roda 100% offline em qualquer navegador móvel (Chrome, Safari, Edge) mesmo em Modo Avião.
 - **QR Code no Terminal (`iniciar_assistente.py`):** Ao iniciar o servidor de desenvolvimento, um QR Code ASCII é impresso no console permitindo que a câmera do celular abra a aplicação na rede local instantaneamente.
 - **Barra de Troca Rápida de Decks (Quick Switcher):** Na Etapa 3, botões de toque rápido permitem alternar entre Mag-Vire, Gênios, Kommo-o e Masquerain com 1 clique para comparação tática em tempo real.
+
+---
+
+## 6. Motor Monte Carlo, Live Deck Checking e Telemetria para Estudo de Caso (v1.8.0)
+
+Para transformar o torneio do dia em um caso de estudo empírico com fundamentação científica:
+- **Simulador Estocástico Monte Carlo:** Executa 10.000 iterações em ~40ms medindo a taxa empírica de Lead Starter, ofensividade no Turno 1 (atacante + energia) e matriz de risco de Prize Bricking para todas as 40 cartas.
+- **Rastreador de Prêmios ao Vivo (Deck & Prize Checker):** Durante a primeira busca no baralho (Turno 1), o competidor marca as 4 cartas ausentes. O sistema identifica instantaneamente se peças únicas (ex: Doce Raro, Cinza Sagrada) ou atacantes estão trancados nos prêmios.
+- **Caderno de Bordo de Torneio (Tournament Logger):** Registro ágil rodada a rodada de oponente, arquétipo, ordem de turno (1º vs 2º), placar de prêmios, carta MVP e erros críticos / aprendizados.
+- **Exportador do Estudo de Caso em Markdown:** Compilação com 1 clique de um relatório completo com arquitetura do baralho, dados estocásticos, histórico de rodadas e análise crítica, pronto para documentação e publicação técnica.

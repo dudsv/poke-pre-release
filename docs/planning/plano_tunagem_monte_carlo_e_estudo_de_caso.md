@@ -71,3 +71,4 @@
 | Travamento da thread principal durante Monte Carlo no celular | Alto | Otimização do loop em arrays de inteiros/índices e uso de `setTimeout` com feedback visual. 10.000 iterações em JS rodam em <40ms. |
 | Perda de dados se o celular fechar o navegador | Alto | Gravação síncrona em `localStorage` a cada rodada salva ou alteração de estado. |
 | Incompatibilidade de empacotamento offline | Médio | Teste imediato com `empacotar_celular.py` verificando tamanho final e ausência de dependências remotas. |
+

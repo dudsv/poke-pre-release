@@ -1,12 +1,19 @@
 // Aplicação do Assistente de Pré-lançamento Reinado Delta
 const engine = new DeckOptimizationEngine(KITS_DATA, BOOSTER_CARDS);
+const mcSimulator = new MonteCarloSimulator(10000);
+const tournamentManager = new TournamentManager();
 
 const state = {
   selectedKit: "magmortar",
   userPulls: {},
   currentResult: null,
   activeMatchupFilter: "all",
-  expandedMatchups: {}
+  expandedMatchups: {},
+  mcSimulator,
+  tournamentManager,
+  lastSimulationResult: null,
+  liveRemainingPrizes: 4,
+  livePrizedCards: {}
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupQuickParser();
   setupActionButtons();
   recalculate();
+  renderTournamentDashboard();
+  renderLiveDeckChecker();
 });
 
 function initTabs() {
@@ -297,6 +306,7 @@ function recalculate() {
   const result = engine.optimizeDeck(state.selectedKit, state.userPulls);
   state.currentResult = result;
   renderResults(result);
+  renderLiveDeckChecker();
 }
 
 function renderResults(result) {
@@ -711,6 +721,374 @@ function setupActionButtons() {
   }
 }
 
+// =====================================================================
+// SIMULAÇÃO MONTE CARLO (10.000 ITERAÇÕES)
+// =====================================================================
+function runMonteCarloSimulation() {
+  if (!state.currentResult || !state.currentResult.flatDeck) {
+    alert("Gere o baralho de 40 cartas primeiro!");
+    return;
+  }
+
+  const btn = document.getElementById("btnRunMonteCarlo");
+  const loading = document.getElementById("mcLoading");
+  const container = document.getElementById("mcResultsContainer");
+
+  if (btn) btn.disabled = true;
+  if (loading) loading.style.display = "flex";
+  if (container) container.style.display = "none";
+
+  // Executa com leve atraso para a UI exibir o spinner sem travar
+  setTimeout(() => {
+    try {
+      const sim = state.mcSimulator.run(state.currentResult.flatDeck, state.selectedKit);
+      state.lastSimulationResult = sim;
+      renderMonteCarloResults(sim);
+    } catch (err) {
+      console.error("Erro na simulação Monte Carlo:", err);
+      alert("Erro ao executar simulação: " + err.message);
+    } finally {
+      if (btn) btn.disabled = false;
+      if (loading) loading.style.display = "none";
+      if (container) container.style.display = "block";
+    }
+  }, 40);
+}
+
+function renderMonteCarloResults(sim) {
+  const elLead = document.getElementById("mcLeadRate");
+  const elLeadDesc = document.getElementById("mcLeadDesc");
+  const elT1 = document.getElementById("mcT1OffensiveRate");
+  const elMulligan = document.getElementById("mcMulliganRate");
+  const elSupporter = document.getElementById("mcSupporterRate");
+
+  if (elLead) elLead.textContent = sim.leadStarterRate;
+  if (elLeadDesc) {
+    const starterNames = state.mcSimulator.getLeadStarterNames(state.selectedKit).join(" ou ");
+    elLeadDesc.textContent = `Chance de abrir com ${starterNames} no primeiro turno`;
+  }
+  if (elT1) elT1.textContent = sim.t1OffensiveRate;
+  if (elMulligan) elMulligan.textContent = sim.mulliganRate;
+  if (elSupporter) elSupporter.textContent = sim.supporterInHandRate;
+
+  const elAvgB = document.getElementById("mcAvgBasics");
+  const elAvgE = document.getElementById("mcAvgEnergies");
+  const elAvgS = document.getElementById("mcAvgSupporters");
+  const elElapsed = document.getElementById("mcElapsed");
+
+  if (elAvgB) elAvgB.textContent = sim.avgBasics;
+  if (elAvgE) elAvgE.textContent = sim.avgEnergies;
+  if (elAvgS) elAvgS.textContent = sim.avgSupporters;
+  if (elElapsed) elElapsed.textContent = `${sim.elapsedMs} ms (${sim.iterations.toLocaleString()} mãos)`;
+
+  const tbody = document.getElementById("mcPrizeTableBody");
+  if (tbody && sim.prizeRisk) {
+    tbody.innerHTML = sim.prizeRisk.map(item => {
+      const riskClass = item.riskLevel === "danger" ? "risk-danger" : item.riskLevel === "warning" ? "risk-warning" : "risk-safe";
+      const riskLabel = item.riskLevel === "danger" ? "Alto Risco" : item.riskLevel === "warning" ? "Atenção" : "Seguro";
+
+      return `
+        <tr>
+          <td>
+            <strong>${item.name}</strong>
+            ${item.core ? '<span class="badge-core" style="font-size:0.65rem; margin-left:6px;">NÚCLEO</span>' : ''}
+          </td>
+          <td style="font-family:'JetBrains Mono', monospace; font-weight:700;">${item.totalCopies}x</td>
+          <td style="font-family:'JetBrains Mono', monospace; color:${parseFloat(item.atLeastOnePrizing) > 30 ? '#fbbf24' : '#cbd5e1'};">
+            ${item.atLeastOnePrizing}
+          </td>
+          <td style="font-family:'JetBrains Mono', monospace; color:${parseFloat(item.allPrizing) > 0 ? '#f87171' : '#34d399'}; font-weight:700;">
+            ${item.allPrizing}
+          </td>
+          <td>
+            <span class="risk-badge ${riskClass}">${riskLabel}</span>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }
+}
+
+// =====================================================================
+// RASTREADOR DE PRÊMIOS AO VIVO & DECK CHECKER
+// =====================================================================
+function renderLiveDeckChecker() {
+  const container = document.getElementById("liveDeckCheckerGrid");
+  const badge = document.getElementById("prizesCountBadge");
+  const alertsContainer = document.getElementById("livePrizeAlertsContainer");
+  if (!container || !state.currentResult) return;
+
+  const deck = state.currentResult.flatDeck || [];
+  let totalMarked = 0;
+  Object.values(state.livePrizedCards).forEach(cnt => { totalMarked += cnt; });
+
+  if (badge) {
+    badge.textContent = `${totalMarked} / 4 Prêmios Marcados`;
+    badge.style.color = totalMarked === 4 ? "#34d399" : totalMarked > 4 ? "#f87171" : "#38bdf8";
+  }
+
+  if (alertsContainer) {
+    const alerts = [];
+    if (totalMarked === 4) {
+      alerts.push(`<div style="background:rgba(16, 185, 129, 0.15); border:1px solid #10b981; border-radius:4px; padding:8px 12px; color:#34d399; font-size:0.82rem; font-weight:600;">
+        🎯 Mapeamento Completo: Todos os 4 prêmios identificados! Você sabe exatamente a composição do seu deck restante.
+      </div>`);
+    } else if (totalMarked > 4) {
+      alerts.push(`<div style="background:rgba(239, 68, 68, 0.15); border:1px solid #ef4444; border-radius:4px; padding:8px 12px; color:#f87171; font-size:0.82rem; font-weight:600;">
+        ⚠️ Mais de 4 cartas marcadas nos prêmios! Desmarque o excedente tocando na carta.
+      </div>`);
+    }
+
+    for (const [cardName, prizedCount] of Object.entries(state.livePrizedCards)) {
+      if (prizedCount <= 0) continue;
+      const cardObj = deck.find(c => c.name === cardName);
+      if (!cardObj) continue;
+
+      if (cardObj.count === 1) {
+        alerts.push(`<div style="background:rgba(239, 68, 68, 0.12); border-left:3px solid #ef4444; padding:6px 10px; color:#fca5a5; font-size:0.78rem; margin-top:4px;">
+          🚨 <strong>${cardName}:</strong> Sua ÚNICA cópia está nos prêmios! Não conte com esta carta até nocautear Pokémon rivais.
+        </div>`);
+      } else if (prizedCount >= cardObj.count) {
+        alerts.push(`<div style="background:rgba(239, 68, 68, 0.12); border-left:3px solid #ef4444; padding:6px 10px; color:#fca5a5; font-size:0.78rem; margin-top:4px;">
+          🚨 <strong>${cardName}:</strong> TODAS as ${cardObj.count} cópias estão trancadas nos prêmios (Brick Total)!
+        </div>`);
+      } else if (cardName.toLowerCase().includes("surskit") && prizedCount >= 2) {
+        alerts.push(`<div style="background:rgba(245, 158, 11, 0.12); border-left:3px solid #f59e0b; padding:6px 10px; color:#fde047; font-size:0.78rem; margin-top:4px;">
+          ⚠️ <strong>Surskit:</strong> ${prizedCount} cópias nos prêmios. Seu ataque *Multiplicar* no T1 só encontrará ${cardObj.count - prizedCount} Surskit no deck!
+        </div>`);
+      }
+    }
+
+    alertsContainer.innerHTML = alerts.join("");
+  }
+
+  container.innerHTML = deck.map(card => {
+    const prizedCount = state.livePrizedCards[card.name] || 0;
+    const isPrized = prizedCount > 0;
+
+    return `
+      <div class="live-card-toggle ${isPrized ? 'is-prized' : ''}" onclick="togglePrizeCard('${card.name.replace(/'/g, "\\'")}')">
+        <span class="live-card-name" title="${card.name}">${card.name}</span>
+        <span class="live-card-badge">${prizedCount > 0 ? `${prizedCount} no Prêmio` : `${card.count}x`}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+function togglePrizeCard(cardName) {
+  if (!state.currentResult) return;
+  const cardObj = state.currentResult.flatDeck.find(c => c.name === cardName);
+  if (!cardObj) return;
+
+  const currentPrized = state.livePrizedCards[cardName] || 0;
+  let totalMarked = 0;
+  Object.values(state.livePrizedCards).forEach(cnt => { totalMarked += cnt; });
+
+  if (currentPrized < cardObj.count && totalMarked < 4) {
+    state.livePrizedCards[cardName] = currentPrized + 1;
+  } else {
+    delete state.livePrizedCards[cardName];
+  }
+
+  renderLiveDeckChecker();
+}
+
+function setRemainingPrizes(num) {
+  state.liveRemainingPrizes = num;
+  document.querySelectorAll(".btn-prize-pill").forEach(btn => {
+    btn.classList.toggle("active", btn.id === `prize-pill-${num}`);
+  });
+  state.tournamentManager.updateLivePrizes(num, state.livePrizedCards);
+}
+
+function resetLiveGame() {
+  state.liveRemainingPrizes = 4;
+  state.livePrizedCards = {};
+  state.tournamentManager.resetLiveMatch();
+  setRemainingPrizes(4);
+  renderLiveDeckChecker();
+}
+
+// =====================================================================
+// CADERNO DE BORDO DO TORNEIO & ESTUDO DE CASO
+// =====================================================================
+function handleSaveMatch(event) {
+  event.preventDefault();
+
+  const round = document.getElementById("formRound").value;
+  const opponentName = document.getElementById("formOpponent").value;
+  const opponentKit = document.getElementById("formOpponentKit").value;
+  const turnOrder = document.getElementById("formTurnOrder").value;
+  const result = document.getElementById("formResult").value;
+  const prizesTaken = document.getElementById("formPrizesTaken").value;
+  const prizesConceded = document.getElementById("formPrizesConceded").value;
+  const durationMinutes = document.getElementById("formDuration").value;
+  const mvpCard = document.getElementById("formMvp").value;
+  const criticalError = document.getElementById("formCriticalError").value;
+  const notes = document.getElementById("formNotes").value;
+
+  state.tournamentManager.addMatch({
+    round: parseInt(round, 10),
+    opponentName,
+    opponentKit,
+    turnOrder,
+    result,
+    prizesTaken: parseInt(prizesTaken, 10),
+    prizesConceded: parseInt(prizesConceded, 10),
+    durationMinutes: durationMinutes ? parseInt(durationMinutes, 10) : null,
+    mvpCard,
+    criticalError,
+    notes
+  });
+
+  document.getElementById("formRound").value = parseInt(round, 10) + 1;
+  document.getElementById("formOpponent").value = "";
+  document.getElementById("formMvp").value = "";
+  document.getElementById("formCriticalError").value = "";
+  document.getElementById("formNotes").value = "";
+  document.getElementById("formPrizesTaken").value = "4";
+  document.getElementById("formPrizesConceded").value = "0";
+
+  renderTournamentDashboard();
+  alert("Partida registrada com sucesso no Caderno de Bordo!");
+}
+
+function renderTournamentDashboard() {
+  const container = document.getElementById("tournamentStatsDashboard");
+  const listContainer = document.getElementById("matchesListContainer");
+  if (!container || !listContainer) return;
+
+  const stats = state.tournamentManager.getStats();
+
+  container.innerHTML = `
+    <div class="tournament-summary-grid">
+      <div class="summary-metric-card">
+        <span class="summary-metric-title">Partidas</span>
+        <span class="summary-metric-value">${stats.total}</span>
+      </div>
+      <div class="summary-metric-card">
+        <span class="summary-metric-title">Campanha</span>
+        <span class="summary-metric-value" style="color:${stats.wins >= stats.losses ? '#34d399' : '#f87171'};">
+          ${stats.wins}V - ${stats.losses}D - ${stats.ties}E
+        </span>
+      </div>
+      <div class="summary-metric-card">
+        <span class="summary-metric-title">Win Rate Geral</span>
+        <span class="summary-metric-value">${stats.winRate}</span>
+      </div>
+      <div class="summary-metric-card">
+        <span class="summary-metric-title">Indo em 1º (T1)</span>
+        <span class="summary-metric-value" style="font-size:1.25rem;">${stats.firstTurnWinRate}</span>
+      </div>
+      <div class="summary-metric-card">
+        <span class="summary-metric-title">Indo em 2º (T2)</span>
+        <span class="summary-metric-value" style="font-size:1.25rem;">${stats.secondTurnWinRate}</span>
+      </div>
+      <div class="summary-metric-card">
+        <span class="summary-metric-title">Saldo Prêmios</span>
+        <span class="summary-metric-value" style="color:${stats.prizeDiff >= 0 ? '#38bdf8' : '#f87171'};">
+          ${stats.prizeDiff > 0 ? '+' : ''}${stats.prizeDiff}
+        </span>
+      </div>
+    </div>
+  `;
+
+  const matches = state.tournamentManager.data.matches || [];
+  if (matches.length === 0) {
+    listContainer.innerHTML = `
+      <div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.85rem; background:rgba(15,23,42,0.4); border-radius:var(--radius-sm);">
+        Nenhuma partida registrada ainda. Preencha o formulário acima ao término de cada rodada física na loja.
+      </div>
+    `;
+    return;
+  }
+
+  listContainer.innerHTML = matches.map(m => {
+    const resClass = m.result === "win" ? "win" : m.result === "loss" ? "loss" : "tie";
+    const resBadge = m.result === "win" ? "✅ Vitória" : m.result === "loss" ? "❌ Derrota" : "🤝 Empate";
+
+    return `
+      <div class="match-record-card ${resClass}">
+        <div class="match-record-header">
+          <span class="match-record-title">Rodada ${m.round}: vs. ${m.opponentName} (${m.opponentKit.toUpperCase()})</span>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="risk-badge ${resClass === 'win' ? 'risk-safe' : resClass === 'loss' ? 'risk-danger' : 'risk-warning'}">
+              ${resBadge} (${m.prizesTaken} - ${m.prizesConceded})
+            </span>
+            <button class="btn-delete-match" onclick="deleteMatchRecord('${m.id}')" title="Excluir rodada">✕</button>
+          </div>
+        </div>
+        <div class="match-record-meta">
+          <span>Ordem: <strong>${m.turnOrder === '1st' ? '1º a jogar' : '2º a jogar'}</strong></span>
+          ${m.durationMinutes ? `<span>Duração: ${m.durationMinutes} min</span>` : ''}
+          ${m.mvpCard ? `<span>MVP: <strong>${m.mvpCard}</strong></span>` : ''}
+        </div>
+        ${m.criticalError ? `
+          <div style="font-size:0.78rem; color:#fca5a5; margin-top:2px;">
+            ⚠️ <strong>Erro / Aprendizado:</strong> ${m.criticalError}
+          </div>
+        ` : ''}
+        ${m.notes ? `
+          <div style="font-size:0.78rem; color:#cbd5e1; margin-top:2px;">
+            📝 <strong>Notas:</strong> ${m.notes}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join("");
+}
+
+function deleteMatchRecord(matchId) {
+  if (confirm("Deseja realmente remover esta rodada do caderno de bordo?")) {
+    state.tournamentManager.deleteMatch(matchId);
+    renderTournamentDashboard();
+  }
+}
+
+function clearTournamentData() {
+  if (confirm("ATENÇÃO: Deseja apagar todas as rodadas salvas do torneio? Essa ação não pode ser desfeita.")) {
+    state.tournamentManager.clearMatches();
+    renderTournamentDashboard();
+  }
+}
+
+function getOrRunMonteCarloForReport() {
+  if (!state.lastSimulationResult && state.currentResult && state.currentResult.flatDeck) {
+    state.lastSimulationResult = state.mcSimulator.run(state.currentResult.flatDeck, state.selectedKit);
+  }
+  return state.lastSimulationResult;
+}
+
+function copyCaseStudyMarkdown() {
+  const kit = KITS_DATA[state.selectedKit];
+  const sim = getOrRunMonteCarloForReport();
+  const md = state.tournamentManager.generateCaseStudyMarkdown(kit, state.currentResult, sim);
+
+  navigator.clipboard.writeText(md).then(() => {
+    alert("Relatório completo do Estudo de Caso copiado para a área de transferência em formato Markdown!");
+  }).catch(err => {
+    console.error("Erro ao copiar Markdown:", err);
+    alert("Não foi possível copiar automaticamente. Use a opção de baixar arquivo.");
+  });
+}
+
+function downloadCaseStudyMarkdown() {
+  const kit = KITS_DATA[state.selectedKit];
+  const sim = getOrRunMonteCarloForReport();
+  const md = state.tournamentManager.generateCaseStudyMarkdown(kit, state.currentResult, sim);
+
+  const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const dateStr = new Date().toISOString().split("T")[0];
+  a.href = url;
+  a.download = `estudo_de_caso_prerelease_${state.selectedKit}_${dateStr}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 // Garante exposição no escopo global para eventos inline HTML
 window.selectKit = selectKit;
 window.selectKitAndRecalculate = selectKitAndRecalculate;
@@ -721,3 +1099,13 @@ window.toggleMobileHelpModal = toggleMobileHelpModal;
 window.updatePull = updatePull;
 window.addPull = addPull;
 window.resetPulls = resetPulls;
+window.runMonteCarloSimulation = runMonteCarloSimulation;
+window.renderLiveDeckChecker = renderLiveDeckChecker;
+window.togglePrizeCard = togglePrizeCard;
+window.setRemainingPrizes = setRemainingPrizes;
+window.resetLiveGame = resetLiveGame;
+window.handleSaveMatch = handleSaveMatch;
+window.deleteMatchRecord = deleteMatchRecord;
+window.clearTournamentData = clearTournamentData;
+window.copyCaseStudyMarkdown = copyCaseStudyMarkdown;
+window.downloadCaseStudyMarkdown = downloadCaseStudyMarkdown;

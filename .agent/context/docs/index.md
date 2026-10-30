@@ -38,6 +38,7 @@ Este índice organiza toda a documentação técnica, tática e de usuário gera
 - [Contexto Vivo do Projeto](file:///c:/dev/prereleasepoke/.agent/context/context.md): Visão geral do repositório, domínio do TCG, kits e regras base.
 - [Documentação Técnica](file:///c:/dev/prereleasepoke/.agent/context/docs/documentacao_tecnica.md): Detalhamento da extração de dados, arquitetura da aplicação `/app`, testes unitários e regras do motor.
 - [Documentação do Usuário](file:///c:/dev/prereleasepoke/.agent/context/docs/documentacao_usuario.md): Guia prático de aplicação para o jogador e manual do assistente.
+- [Plano de Tunagem com Monte Carlo e Estudo de Caso](file:///c:/dev/prereleasepoke/docs/planning/plano_tunagem_monte_carlo_e_estudo_de_caso.md): Rastreabilidade da v1.8.0.
 - [Plano de Absorção de Links da Comunidade e Pós-Lançamento](file:///c:/dev/prereleasepoke/docs/planning/plano_absorcao_links_e_comunidade_delta_reign.md): Rastreabilidade da v1.7.0.
 - [Plano de Execução e Absorção](file:///c:/dev/prereleasepoke/docs/planning/plano_absorcao_conteudo_reinado_delta.md): Rastreabilidade inicial.
 - [README Principal](file:///c:/dev/prereleasepoke/README.md): Portal de entrada do projeto no padrão GitHub.

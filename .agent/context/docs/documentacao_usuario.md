@@ -88,3 +88,31 @@ Na Etapa 3, na seção **⚔️ Guia de Partida & Confrontos**:
    - 🧮 Matemática exata de descartes e dano x HP.
    - 📋 Sequência de turnos recomendada (Turno 1, Turno 2, Turno 3).
    - 🔄 Plano B de emergência caso seu atacante seja nocauteado.
+
+---
+
+## 5. Simulador Monte Carlo, Rastreador de Prêmios e Estudo de Caso (v1.8.0)
+
+### 5.1 Simulador Monte Carlo (Etapa 4)
+- **Como Executar:** Após otimizar seu baralho na Etapa 3, toque na aba **"4. Monte Carlo (10k)"** e clique no botão roxo `⚡ Executar Simulação Monte Carlo (10.000)`.
+- **O que os Números Dizem:**
+  - **Lead Starter no T1:** A chance exata de você abrir o jogo com o atacante prioritário do seu kit (ex: Surskit no Masquerain, Magmar/Electabuzz no Mag-Vire, Tornadus no Gênios).
+  - **Ataque Ofensivo no T1:** Probabilidade de ter simultaneamente o Lead Starter e uma Energia Básica na mão de largada.
+  - **Risco de Mulligan:** % de chances de comprar uma mão inicial com zero básicos (e dar compras extras ao adversário).
+  - **Apoiador / Busca no T1:** Chance de ter Lílian, Brock ou Poké Pad logo na mão de abertura para destravar o jogo.
+- **Matriz de Risco de Prêmios:** Revela a probabilidade de cartas essenciais estarem presas nos 4 prêmios da partida. Cartas de cópia única (como Doce Raro ou Cinza Sagrada) têm 10% de chance de estarem inacessíveis.
+
+### 5.2 Rastreador de Prêmios ao Vivo (Deck Checking) (Etapa 5)
+- **Regra de Ouro do Competidor:** No Turno 1 ou 2, quando você jogar a sua primeira carta de busca no baralho (*Busca do Brock*, *Lanterna de Aventura*, *Multiplicar* do Surskit ou *Ultra Ball*), faça o **Deck Checking**:
+  1. Olhe rapidamente o baralho físico e identifique as 4 cartas que não estão lá (elas são os seus 4 Prêmios!).
+  2. Toque no nome dessas cartas na grade do assistente.
+  3. O assistente emitirá alertas instantâneos (ex: *"🚨 Atenção: Seu único Doce Raro está nos prêmios! Não tente evoluir Kommo-o pelo método rápido; faça a evolução manual via Hakamo-o"*).
+- **Contador de Prêmios:** Use os botões `[4] [3] [2] [1] [0]` para acompanhar os prêmios restantes durante o jogo. Ao final, clique em `🔄 Novo Jogo` para zerar o painel para a rodada seguinte.
+
+### 5.3 Caderno de Bordo de Torneio & Exportador do Estudo de Caso (Etapa 5)
+- **Registro Rápido Entre Rodadas (1 Minuto):**
+  - Preencha: Rodada, Nome do Oponente, Kit Rival, se você foi 1º ou 2º, Resultado (Vitória/Derrota), Placar de Prêmios (ex: 4-2), Carta MVP e o seu **Erro Crítico / Aprendizado** (ex: *"Desci Combee no banco e o rival puxou com Repelente"*).
+  - Clique em `💾 Salvar Partida no Caderno de Bordo`.
+- **Exportação do Estudo de Caso Completo:**
+  - No painel de desempenho, toque em **`📑 Baixar Relatório (.md)`** ou **`📋 Copiar Relatório MD`**.
+  - O assistente gera instantaneamente um documento estruturado em Markdown com a composição do baralho, o modelo Monte Carlo, os resultados rodada a rodada, o Win Rate geral e as lições aprendidas, pronto para usar como relatório ou estudo de caso!

@@ -110,6 +110,28 @@ Cartas marcadas como `core: true` no dicionário `BASE_DECKS` são bloqueadas co
 4. **Guia Econômico Pós-Lançamento (TCGplayer Buyer's Guide):**
    - Identificação de cartas com alto valor financeiro no Standard: *Adventuring Lantern (DLR 090/103)* (3x no kit Mag-Vire!), *Zinnia's Trust (DLR 103/103)* e *Mega Rayquaza ex (DLR 084/103)*.
 
+### 3.5 Simulador Estocástico Monte Carlo, Live Prize Tracker e Telemetria para Estudo de Caso (v1.8.0)
+1. **Classe `MonteCarloSimulator` (`app/engine.js`):**
+   - **Amostragem Estocástica de Alta Performance:** Executa 10.000 simulações completas de embaralhamento e compra em ~35-50ms no motor JavaScript.
+   - **Algoritmo Fisher-Yates:** Embaralhamento determinístico e uniforme sobre array de índices de 40 cartas.
+   - **Regra Oficial de Mulligan:** Detecta mãos com 0 Pokémon básicos e executa repetições até obter básico válido, quantificando a taxa empírica de mulligan.
+   - **Alocação de 4 Cartas de Prêmio:** Separa 4 cartas (10% do deck) e constrói o histograma de distribuição para cada carta presente no baralho.
+   - **Métricas Computadas:**
+     - `leadStarterRate`: Probabilidade de abrir com o atacante de largada ideal (Surskit, Magmar/Electabuzz, Tornadus/Landorus/Thundurus, Jangmo-o/Druddigon).
+     - `t1OffensiveRate`: Probabilidade de abrir com Lead Starter + Energia simultaneamente.
+     - `supporterInHandRate`: Probabilidade de abrir com Apoiadores ou cartas de busca/compra (Brock, Lílian, Poké Pad).
+     - `prizeRisk`: Matriz com probabilidade de 1+ cópias nos prêmios e de "Brick Total" (100% das cópias presas).
+2. **Classe `TournamentManager` (`app/engine.js`):**
+   - **Persistência Offline:** Sincronização em tempo real com `localStorage` sob a chave `PRERELEASE_TOURNAMENT_DATA_v1`.
+   - **Rastreador de Prêmios ao Vivo (Deck & Prize Checker):** Mapeamento interativo das 4 cartas de prêmio durante a 1ª busca de baralho com alertas em tempo real para peças críticas ausentes.
+   - **Caderno de Bordo de Partidas:** Registro ágil por rodada física (oponente, kit rival, 1º/2º turno, resultado V/D/E, placar de prêmios, duração, carta MVP, erro crítico e notas).
+   - **Dashboard Agregado de Desempenho:** Cálculo de Win Rate global, Win Rate por ordem de turno (1º vs 2º), saldo de prêmios e histórico por arquétipo adversário.
+   - **Exportador do Estudo de Caso em Markdown:** Compilador automático de relatório completo com arquitetura do baralho, dados do Monte Carlo, diário de bordo e lições aprendidas, com download de arquivo `.md` e cópia para área de transferência.
+3. **Interface e Usabilidade (`app/index.html` e `app/app.js`):**
+   - Stepper expandido para 5 abas (`1. Selecionar Kit`, `2. Inserir Pulls`, `3. Deck & Táticas`, `4. Monte Carlo (10k)`, `5. Ao Vivo & Torneio`).
+   - Execução assíncrona do simulador com spinner visual para evitar bloqueio da thread principal em celulares.
+   - Pacote standalone `assistente_offline.html` (214.3 KB) atualizado e pronto para o dia do torneio.
+
 ### 3.1 Calibração para 10 Boosters de 6 Cartas (Pool de 60 Cartas Copag)
 - **Aumento do Pool de Modificação:** No formato nacional Copag, o jogador abre 10 boosters de 6 cartas (= 60 cartas abertas), ao invés dos 4 boosters internacionais (40 cartas).
 - **Impacto Estatístico nos 4 Decks:**

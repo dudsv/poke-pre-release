@@ -59,13 +59,19 @@
     <!-- Stepper Navigation -->
     <nav class="stepper" id="stepperNav">
       <button class="step-tab active" data-step="view-kit" id="tab-kit">
-        <span>1. Selecionar Kit & Núcleo</span>
+        <span>1. Selecionar Kit</span>
       </button>
       <button class="step-tab" data-step="view-pulls" id="tab-pulls">
         <span>2. Inserir Pulls</span>
       </button>
       <button class="step-tab" data-step="view-results" id="tab-results">
-        <span>3. Deck Otimizado & Saúde Anti-Brick</span>
+        <span>3. Deck & Táticas</span>
+      </button>
+      <button class="step-tab" data-step="view-montecarlo" id="tab-montecarlo">
+        <span>4. Monte Carlo (10k)</span>
+      </button>
+      <button class="step-tab" data-step="view-tournament" id="tab-tournament">
+        <span>5. Ao Vivo & Torneio</span>
       </button>
     </nav>
 
@@ -199,8 +205,272 @@
 
       </div>
 
-      <button class="btn-action-primary" style="background:linear-gradient(135deg, #0284c7, #2563eb); margin-top:20px;" onclick="switchStep('view-pulls')">
-        ← Voltar e Ajustar Cartas Abertas
+      <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
+        <button class="btn-action-primary" style="background:#334155; flex:1;" onclick="switchStep('view-pulls')">
+          ← Voltar e Ajustar Pulls
+        </button>
+        <button class="btn-action-primary" style="flex:2;" onclick="switchStep('view-montecarlo')">
+          🎲 Avançar para o Simulador Monte Carlo (10.000 Mãos) →
+        </button>
+      </div>
+    </section>
+
+    <!-- ETAPA 4: SIMULADOR MONTE CARLO -->
+    <section class="section-view" id="view-montecarlo">
+      <div class="section-header">
+        <h2 class="section-title">🎲 Simulador Estocástico Monte Carlo</h2>
+        <p class="section-desc">Submete o seu baralho de 40 cartas a 10.000 compras simuladas em memória, aplicando as regras oficiais de compra, mulligan e separação de 4 prêmios para prever a consistência real na mesa.</p>
+      </div>
+
+      <div class="mc-hero-box">
+        <div class="mc-hero-content">
+          <h3 style="margin:0 0 6px 0; color:#38bdf8; font-size:1.1rem;">Simulação de 10.000 Mãos em Tempo Real</h3>
+          <p style="margin:0; font-size:0.85rem; color:#cbd5e1;">O algoritmo computa a probabilidade empírica de abrir com o seu atacante principal, ter energias ou apoiadores na largada e o risco exato de trancar cartas-chave nos 4 prêmios.</p>
+        </div>
+        <button class="btn-action-primary btn-run-mc" id="btnRunMonteCarlo" onclick="runMonteCarloSimulation()">
+          ⚡ Executar Simulação Monte Carlo (10.000)
+        </button>
+      </div>
+
+      <div id="mcLoading" class="mc-loading-state" style="display:none;">
+        <div class="mc-spinner"></div>
+        <span>Embaralhando e simulando 10.000 partidas virtuais...</span>
+      </div>
+
+      <!-- Container de Resultados do Monte Carlo -->
+      <div id="mcResultsContainer" style="display:none; margin-top:20px;">
+        <div class="mc-stats-grid">
+          <div class="mc-stat-card">
+            <span class="mc-stat-label">🎯 Lead Starter no T1</span>
+            <span class="mc-stat-value" id="mcLeadRate">0%</span>
+            <span class="mc-stat-desc" id="mcLeadDesc">Probabilidade de abrir com o Pokémon de início ideal</span>
+          </div>
+
+          <div class="mc-stat-card">
+            <span class="mc-stat-label">⚡ Ataque Ofensivo T1</span>
+            <span class="mc-stat-value" id="mcT1OffensiveRate">0%</span>
+            <span class="mc-stat-desc">Mão com Lead Starter + Energia Básica simultaneamente</span>
+          </div>
+
+          <div class="mc-stat-card">
+            <span class="mc-stat-label">🔄 Risco de Mulligan</span>
+            <span class="mc-stat-value" id="mcMulliganRate">0%</span>
+            <span class="mc-stat-desc">Chance de comprar mão inicial com ZERO Pokémon básicos</span>
+          </div>
+
+          <div class="mc-stat-card">
+            <span class="mc-stat-label">📖 Apoiador / Busca no T1</span>
+            <span class="mc-stat-value" id="mcSupporterRate">0%</span>
+            <span class="mc-stat-desc">Chance de ter Brock, Lílian ou Poké Pad na mão inicial</span>
+          </div>
+        </div>
+
+        <!-- Médias da Mão Inicial -->
+        <div class="box-panel" style="margin-top:16px;">
+          <h3 class="panel-heading">📊 Composição Média da Mão Inicial (7 Cartas)</h3>
+          <div class="mc-averages-bar">
+            <div class="mc-avg-item">
+              <span class="mc-avg-label">Básicos</span>
+              <span class="mc-avg-val" id="mcAvgBasics">0.0</span>
+            </div>
+            <div class="mc-avg-item">
+              <span class="mc-avg-label">Energias</span>
+              <span class="mc-avg-val" id="mcAvgEnergies">0.0</span>
+            </div>
+            <div class="mc-avg-item">
+              <span class="mc-avg-label">Apoiadores / Outs</span>
+              <span class="mc-avg-val" id="mcAvgSupporters">0.0</span>
+            </div>
+            <div class="mc-avg-item">
+              <span class="mc-avg-label">Tempo Computacional</span>
+              <span class="mc-avg-val" id="mcElapsed">0 ms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matriz de Risco de Prize Bricking -->
+        <div class="box-panel" style="margin-top:16px;">
+          <h3 class="panel-heading">⚠️ Matriz de Risco de Prêmios (Prize Bricking Risk)</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+            No pré-lançamento, 4 cartas vão para os prêmios (10% do baralho). Esta tabela indica o risco estatístico de cada peça ficar trancada fora do seu alcance durante a partida:
+          </p>
+          <div class="table-responsive">
+            <table class="mc-prize-table">
+              <thead>
+                <tr>
+                  <th>Carta</th>
+                  <th>Cópias</th>
+                  <th>1+ nos Prêmios</th>
+                  <th>Brick Total (Todas nos Prêmios)</th>
+                  <th>Risco</th>
+                </tr>
+              </thead>
+              <tbody id="mcPrizeTableBody">
+                <!-- Inserido dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
+          <button class="btn-action-primary" style="background:#334155; flex:1;" onclick="switchStep('view-results')">
+            ← Voltar ao Baralho & Matchups
+          </button>
+          <button class="btn-action-primary" style="flex:2;" onclick="switchStep('view-tournament')">
+            ⚔️ Ir para Rastreador ao Vivo & Caderno de Bordo →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPA 5: AO VIVO & CADERNO DE BORDO DO TORNEIO -->
+    <section class="section-view" id="view-tournament">
+      <div class="section-header">
+        <h2 class="section-title">⚔️ Assistente de Partida ao Vivo & Estudo de Caso</h2>
+        <p class="section-desc">Mapeie os 4 prêmios na 1ª busca de baralho, conte prêmios restantes durante o jogo e registre cada rodada para compilar seu relatório técnico de torneio.</p>
+      </div>
+
+      <!-- Rastreador de Prêmios ao Vivo -->
+      <div class="box-panel" id="panelLiveChecker">
+        <div class="panel-heading">
+          <span>🎯 Rastreador de Prêmios ao Vivo (Deck & Prize Checker)</span>
+          <button class="btn-reset-small" onclick="resetLiveGame()">🔄 Novo Jogo</button>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+          Na 1ª busca do baralho (Brock, Lanterna, Multiplicar ou Ultra Ball), conte suas cartas e marque as 4 cartas ausentes. O assistente avisará na hora se alguma peça essencial foi trancada!
+        </p>
+
+        <!-- Contador Visual de Prêmios Restantes da Partida -->
+        <div class="live-prizes-counter-box">
+          <span class="live-counter-title">Prêmios Restantes para Vencer:</span>
+          <div class="prizes-buttons-row">
+            <button class="btn-prize-pill active" id="prize-pill-4" onclick="setRemainingPrizes(4)">4</button>
+            <button class="btn-prize-pill" id="prize-pill-3" onclick="setRemainingPrizes(3)">3</button>
+            <button class="btn-prize-pill" id="prize-pill-2" onclick="setRemainingPrizes(2)">2</button>
+            <button class="btn-prize-pill" id="prize-pill-1" onclick="setRemainingPrizes(1)">1</button>
+            <button class="btn-prize-pill" id="prize-pill-0" onclick="setRemainingPrizes(0)">🏆 0 (Vitória!)</button>
+          </div>
+        </div>
+
+        <!-- Alertas de Prêmios Identificados -->
+        <div id="livePrizeAlertsContainer" style="margin-top:12px;"></div>
+
+        <!-- Seletor Rápido de Cartas nos Prêmios -->
+        <div style="margin-top:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <strong style="font-size:0.88rem; color:#f1f5f9;">Cartas do seu Baralho (Toque para alternar nos Prêmios):</strong>
+            <span id="prizesCountBadge" class="deck-count-badge">0 / 4 Prêmios Marcados</span>
+          </div>
+          <div id="liveDeckCheckerGrid" class="live-checker-grid">
+            <!-- Renderizado dinamicamente com botões de toggle -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulário de Registro de Rodada -->
+      <div class="box-panel" style="margin-top:20px;">
+        <h3 class="panel-heading">📝 Registrar Rodada do Torneio</h3>
+        <form id="matchForm" onsubmit="handleSaveMatch(event)" class="match-form">
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label>Rodada:</label>
+              <input type="number" id="formRound" min="1" max="10" value="1" required>
+            </div>
+            <div class="form-group">
+              <label>Nome do Oponente:</label>
+              <input type="text" id="formOpponent" placeholder="Ex: Rodrigo" required>
+            </div>
+            <div class="form-group">
+              <label>Kit Rival Enfrentado:</label>
+              <select id="formOpponentKit" required>
+                <option value="magmortar">⚡ Mag-Vire</option>
+                <option value="enamorus">🌪️ Solidariedade (Gênios)</option>
+                <option value="kommo">🐉 Kommo-o (Dragões)</option>
+                <option value="masquerain">🐛 Masquerain (Insetofobia)</option>
+                <option value="outro">🎲 Outro / Híbrido</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Ordem de Turno:</label>
+              <select id="formTurnOrder" required>
+                <option value="1st">1º a Jogar (T1)</option>
+                <option value="2nd">2º a Jogar (T2)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-grid" style="margin-top:10px;">
+            <div class="form-group">
+              <label>Resultado:</label>
+              <select id="formResult" required>
+                <option value="win">✅ Vitória</option>
+                <option value="loss">❌ Derrota</option>
+                <option value="tie">🤝 Empate</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Seus Prêmios Pegos (0 a 4):</label>
+              <input type="number" id="formPrizesTaken" min="0" max="4" value="4" required>
+            </div>
+            <div class="form-group">
+              <label>Prêmios do Rival (0 a 4):</label>
+              <input type="number" id="formPrizesConceded" min="0" max="4" value="0" required>
+            </div>
+            <div class="form-group">
+              <label>Duração (minutos):</label>
+              <input type="number" id="formDuration" min="1" max="60" placeholder="20">
+            </div>
+          </div>
+
+          <div class="form-row-grid" style="margin-top:10px;">
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Carta MVP da Partida:</label>
+              <input type="text" id="formMvp" placeholder="Ex: Cacturne DLR 005 ou Lanterna de Aventura">
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Erro Crítico / Principal Aprendizado:</label>
+              <input type="text" id="formCriticalError" placeholder="Ex: Baixei Combee no banco sem precisar; esqueci da fraqueza a Fogo">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:10px;">
+            <label>Observações Táticas da Partida:</label>
+            <textarea id="formNotes" rows="2" placeholder="Ex: Oponente não achou Landorus a tempo. Matei Tornadus no T2 e fechei o jogo no T4."></textarea>
+          </div>
+
+          <button type="submit" class="btn-action-primary" style="margin-top:14px; width:100%;">
+            💾 Salvar Partida no Caderno de Bordo
+          </button>
+        </form>
+      </div>
+
+      <!-- Dashboard do Torneio & Exportador do Caso de Estudo -->
+      <div class="box-panel" style="margin-top:20px;">
+        <div class="panel-heading">
+          <span>📊 Dashboard de Desempenho & Estudo de Caso</span>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn-clipboard" onclick="copyCaseStudyMarkdown()">📋 Copiar Relatório MD</button>
+            <button class="btn-action-primary" style="padding:6px 14px; font-size:0.8rem;" onclick="downloadCaseStudyMarkdown()">📑 Baixar Relatório (.md)</button>
+          </div>
+        </div>
+
+        <div id="tournamentStatsDashboard" style="margin-bottom:16px;"></div>
+
+        <!-- Lista de Partidas Registradas -->
+        <h4 style="color:#f1f5f9; font-size:0.95rem; margin-bottom:10px;">Partidas Registradas no Evento:</h4>
+        <div id="matchesListContainer">
+          <!-- Renderizado dinamicamente -->
+        </div>
+
+        <div style="margin-top:20px; text-align:right;">
+          <button class="btn-reset-small" style="color:#f87171; border-color:#ef444455;" onclick="clearTournamentData()">
+            🗑️ Limpar Todos os Registros do Torneio
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-action-primary" style="background:#334155; margin-top:20px;" onclick="switchStep('view-results')">
+        ← Voltar ao Baralho & Táticas
       </button>
     </section>
 

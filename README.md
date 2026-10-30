@@ -19,6 +19,23 @@ A aplicação web local (`/app`) roda de forma desacoplada, ultra rápida e **10
    - Dê duplo clique no [`iniciar_assistente.bat`](file:///c:/dev/prereleasepoke/iniciar_assistente.bat) no Windows (ou `python iniciar_assistente.py`).
    - Um **QR Code ASCII** aparecerá no terminal do computador: basta apontar a câmera do celular para abrir instantaneamente!
 
+### ✨ O que há de Novo na Versão 1.8.0 (Simulador Monte Carlo 10k, Live Prize Tracker & Estudo de Caso):
+1. **Simulador Estocástico Monte Carlo (10.000 Mãos em ~40ms):**
+   - Submete o baralho de 40 cartas montado a 10.000 compras completas em memória (via Fisher-Yates) seguindo as regras oficiais da Pokémon Company (mulligan para mãos sem básicos e alocação de 4 cartas de prêmio).
+   - Métricas em tempo real: **Lead Starter no T1** (ex: Surskit, Electabuzz, Tornadus, Jangmo-o), **Ataque Ofensivo no T1** (Lead + Energia), **Risco de Mulligan** e **Presença de Apoiador/Busca no T1**.
+   - **Matriz de Risco de Prêmios (Prize Bricking Matrix):** Exibe a probabilidade de cartas-chave ficarem trancadas nos 4 prêmios da partida (alerta de 10% de brick total para cartas de 1 cópia como Doce Raro e Cinza Sagrada).
+2. **Rastreador de Prêmios ao Vivo (Deck & Prize Checker):**
+   - Na 1ª busca no baralho (Busca do Brock, Lanterna, Multiplicar ou Ultra Ball), toque nas 4 cartas ausentes. O app deduz os prêmios na hora e emite alertas táticos caso peças fundamentais estejam indisponíveis.
+   - **Contador Tátil de Prêmios Restantes:** Botões `[4] [3] [2] [1] [0 (Vitória)]` para acompanhar a partida em tempo real na mesa.
+3. **Caderno de Bordo de Torneio & Telemetria para Estudo de Caso:**
+   - Formulário ágil pós-partida física com persistência total e síncrona em `localStorage` (tolerante a recarregamentos ou desligamento de tela).
+   - Registro de: Rodada, Oponente, Kit Rival, Ordem (1º ou 2º), Resultado (V/D/E), Placar de Prêmios, Duração, Carta MVP e Erro Crítico / Lição Aprendida.
+   - Dashboard analítico consolidado: Win Rate geral, Win Rate 1º vs 2º, saldo de prêmios e aproveitamento por arquétipo adversário.
+4. **Exportador com 1 Clique do Estudo de Caso (.md):**
+   - Gera um relatório estruturado em formato GitHub Markdown pronto para publicação, contendo a lista completa de 40 cartas, métricas estocásticas do Monte Carlo, diário de bordo rodada a rodada e síntese crítica dos aprendizados.
+5. **Pacote Mobile Standalone Recompilado:**
+   - [`assistente_offline.html`](file:///c:/dev/prereleasepoke/assistente_offline.html) (214.3 KB) atualizado com as 5 abas integradas para rodar 100% offline no celular durante o torneio de hoje.
+
 ### ✨ O que há de Novo na Versão 1.7.0 (Checklist Oficial Delta Reign, Comunidade & Guia de Mercado):
 1. **Integração do Checklist Oficial Delta Reign (103 Cartas + 38 Secretas):**
    - Mapeamento da expansão internacional oficial (*Delta Reign*, DLR), que absorve os 76 cards da japonesa *Storm Emeralda* e adiciona 27 cards dos Starter Decks japoneses (totalizando 103 cartas regulares).
@@ -138,6 +155,12 @@ Consulte o documento dedicado [`docs/analise_profunda_matchups_e_estrategias.md`
 
 ## 🛠️ Histórico de Atualizações
 
+- **2026-10-30 (v1.8.0):**
+  - Implementação do motor estocástico `MonteCarloSimulator` com 10.000 iterações em ~40ms para predição empírica de Lead Starter, ofensividade T1 e risco de Prize Bricking.
+  - Implementação do módulo `TournamentManager` com persistência em `localStorage` e gerador de estudo de caso em Markdown.
+  - Adição do Rastreador de Prêmios ao Vivo (Deck & Prize Checker) com alertas táticos imediatos de peças trancadas.
+  - Adição do Caderno de Bordo de Torneio e contador regressivo de prêmios restantes (4 a 0).
+  - Expansão da interface para 5 abas e recompilação do bundle offline standalone `assistente_offline.html` (214.3 KB).
 - **2026-10-30 (v1.7.0):**
   - Mapeamento e auditoria da expansão internacional oficial *Delta Reign* (103 cartas regulares + 38 secretas).
   - Atualização dos códigos numéricos oficiais (DLR) em todo o banco de dados e motor de pulls.

@@ -19,6 +19,37 @@ A aplicação web local (`/app`) roda de forma desacoplada, ultra rápida e **10
    - Dê duplo clique no [`iniciar_assistente.bat`](file:///c:/dev/prereleasepoke/iniciar_assistente.bat) no Windows (ou `python iniciar_assistente.py`).
    - Um **QR Code ASCII** aparecerá no terminal do computador: basta apontar a câmera do celular para abrir instantaneamente!
 
+### ✨ O que há de Novo na Versão 1.6.1 (Auditoria Profunda de Regras e Mecânicas):
+1. **Desmistificação de Ariados e Correção de Regras Críticas:**
+   - *Agulha Secreta (Covert Needle)* NÃO é uma habilidade passiva! É um ataque que custa 3 energias incolores (`[C][C][C]`). Sem aceleração de energia e com Fraqueza a Luta x2 (morre para 1 hit do Landorus), Ariados foi rebaixado para **Armadilha / Fichário**.
+2. **Vespiquen Reclassificada para Fichário Total (Score 1):**
+   - *Clean Hit* custa 3 energias incolores (`[C][C][C]`) e Vespiquen NÃO possui o ataque Bug Out. Se revelada no fundo do deck pelo Masquerain, causa 0 de dano e é descartada. Evoluir Combee diminui a densidade de insetos do seu baralho.
+3. **Cacturne (005/076) + Cacnea (004/076) — O Terror dos Gênios:**
+   - *Punishing Needles* custa apenas **1 Energia de Grama (`[G]`)** e causa $10 + 50 \times \text{Habilidades}$ rivais (210 de dano em 1HKO contra os 4 terians do Enamorus!).
+   - Com a *Floresta da Vitalidade* do kit, Cacnea evolui para Cacturne no **mesmo turno** em que entra em jogo.
+4. **Matemática do Ciclo Autolimpante do Bug Out:**
+   - O ataque Bug Out embaralha os Bug Outers de volta no deck e **descarta o restante** (energias e treinadores), aumentando a densidade de insetos a cada turno e elevando o dano de 100 para 150-200.
+   - Surskit (50 HP) ataca no Turno 1 com *Multiplicar* (`[C]`) para puxar 2 Surskit e filtrar o deck logo na largada.
+5. **Confrontos Calibrados:**
+   - *vs Mag-Vire:* Lock de ataque com *Padrão Pavoroso* ([C] 30 dano) explorando o recuo 3 do Magmortar sem Balão de Ar de fábrica no kit rival.
+   - *vs Enamorus:* Masquerain (110 HP, ou 130 HP com Energia de Crescimento) sobrevive ao primeiro golpe de 70 do Tornadus e contra-ataca com 150 de dano (1HKO em qualquer gênio).
+6. **Pacote Mobile Standalone Recompilado:**
+   - [`assistente_offline.html`](file:///c:/dev/prereleasepoke/assistente_offline.html) (157.9 KB) atualizado com dados calibrados e pronto para uso móvel offline.
+
+### ✨ O que há de Novo na Versão 1.6.0 (Calibração Oficial Física):
+1. **Listas Oficiais dos 4 Kits 100% Calibradas:**
+   - **Masquerain (Insetofobia):** Ultra Ball eliminada (nunca existiu no kit!). Lista real conta com 16 Insetos (4 Surskit, 4 Masquerain, 4 Spinarak, 4 Combee), 4 Busca do Brock, 3 Lilian, 4 Poké Pad, 1 Recuperação de Energia, 1 Cinza Sagrada, 2 Floresta da Vitalidade, 7 Grama e 2 Energia de Crescimento (+20 HP).
+   - **Kommo-o (Dragões):** Atualizado com 3 Druddigon (Crimgan) de 120 HP no lugar de Drampa/Dratini/Dragonair.
+   - **Mag-Vire:** Atualizado com 3 Lanternas de Aventura, 2 Hilda, 4 Poké Pad e zero Air Balloon.
+   - **Solidariedade (Gênios):** Atualizado com 3 Ultra Ball, 3 Poké Pad, 1 Cinza Sagrada, 1 Repelente e proporção real de energias (4 Luta, 4 Psíquica, 3 Raio).
+2. **Catálogo Realista de Pulls Notáveis (Sem Suposições Fantasiosas):**
+   - Fim dos palpites aleatórios de combos inacessíveis de múltiplos estádios ou atacantes fora de tipo.
+   - Prioridade cirúrgica em: cópias extras do tema (regra sem limite de 4), suportes universais de troca/compra (Zínia, Repelente, Doce Raro extra, Recuperação de Energia extra) e staples reais.
+3. **Cortes (Cuts) e Manutenções (Keeps) Refinados:**
+   - No Masquerain, **todos os 16 Insetos são estritamente blindados** (`core: true`), pois são o motor e o dano do Bug Out (+50 por hit). Cortes recaem apenas em treinadores excedentes (2ª Floresta da Vitalidade, 4º Brock ou 4º Poké Pad).
+4. **Pacote Mobile Zero-Install Recompilado:**
+   - O arquivo [`assistente_offline.html`](file:///c:/dev/prereleasepoke/assistente_offline.html) foi reconstruído e empacotado com as listas oficiais e o novo motor para rodar offline no smartphone.
+
 ### ✨ O que há de Novo na Versão 1.5.0:
 1. **Pacote Celular Zero-Install (`assistente_offline.html`):** Arquivo único autocontido gerado via `empacotar_celular.py`, sem dependências externas, que roda offline em qualquer smartphone.
 2. **Calibração para 10 Boosters de 6 Cartas (Formato Copag / Brasil):** O assistente agora reflete as 60 cartas abertas nos 10 boosters nacionais, calibrando as probabilidades de pulls e refinando agressivamente os 4 decks.

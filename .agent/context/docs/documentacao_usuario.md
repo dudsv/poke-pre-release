@@ -52,19 +52,28 @@
 - **Condição de Vitória:** 4 terians em campo = custos incolores zerados (Tornadus bate 70 de graça e compra até 6).
 - **Cartas que NUNCA Saem:** 4 Tornadus, 3 Thundurus, 2 Landorus, 2 Enamorus (não corte o Pokémon Enamorus!), 3 Lilian, 3 Brock, 1 Gládio, 1 Repelente.
 - **O que Buscar nos 10 Boosters:** 3º Landorus (blinda contra prize brick), Tubo de Lava Lendário (desliga Magmortar e Kommo-o rivais na hora!), Repelente extra, Marshadow, Altaria, Kecleon.
-- **Dica de Energia:** Pegue 5x Luta e 4x Raio no balcão da loja. Corte todas as 5 energias Psíquicas da caixa.
+- **Dica de Energia:** Pegue 6x Luta e 5x Raio no balcão da loja. Corte as 4 energias Psíquicas da caixa.
 
 ### Deck 3: Clangor de Escamas (Kommo-o / Dragões)
 - **Condição de Vitória:** Kommo-o de 160 HP batendo 170 e acelerando energias com *Beast Scales*.
 - **Cartas que NUNCA Saem:** 4 Jangmo-o, 4 Hakamo-o, 3 Kommo-o, 4 Lilian, 4 Poké Pad, 2 Brock, 1 Doce Raro.
-- **O que Buscar nos 10 Boosters:** Doce Raro extra (Kommo-o no T2!), básicos de busca (Delibird, Morpeko, Marshadow), Repelente, 5º Jangmo-o, 4º Kommo-o, Zínia.
-- **Dica de Energia:** Pegue 7x Luta e 6x Raio no balcão da loja. Corte Fogo e Água para o Beast Scales acelerar energias úteis.
+- **O que Buscar nos 10 Boosters:** Doce Raro extra (Kommo-o no T2!), básicos de busca (Delibird, Morpeko), Repelente, 5º Jangmo-o, 4º Kommo-o, Zínia.
+- **Dica de Energia:** Pegue 7x Raio e 6x Luta no balcão da loja. Corte as 2 energias de Fogo e 2 de Água para o Beast Scales só acelerar energias úteis.
 
 ### Deck 4: Insetofobia (Masquerain / Surskit)
-- **Condição de Vitória:** *Bug Out* revelando o fundo do deck (+50 de dano por inseto).
-- **Cartas que NUNCA Saem:** 4 Surskit, 4 Masquerain, 4 Combee (no deck!), 4 Spinarak (no deck!), 4 Lilian, 1 Cinza Sagrada, 1 Recuperação de Energia.
-- **O que Buscar nos 10 Boosters:** Mais cópias de Bug Outers sem limite de 4 (mais Surskit, Masquerain, Combee, Spinarak), Ariados (imunidade total a básicos dos gênios), Repelente, Cacturne, Delibird.
-- **Armadilha:** NUNCA baixe Combee e Spinarak na mesa! Eles precisam ficar dentro do deck para dar dano no Bug Out.
+- **Condição de Vitória:** *Bug Out* revelando o fundo do deck (+50 de dano por Pokémon com Bug Out revelado). Os Bug Outers revelados voltam para o deck e as demais cartas vão para o lixo, purificando o baralho turno a turno!
+- **Cartas que NUNCA Saem:** Todos os 16 Pokémon Inseto (4 Surskit, 4 Masquerain, 4 Spinarak, 4 Combee), 3 Lilian, 1 Cinza Sagrada, 1 Recuperação de Energia.
+- **O que Cortar Primeiro:** O kit vem com 2 Florestas da Vitalidade e 4 Brocks. Se abrir pulls relevantes, corte 1 Floresta da Vitalidade e 1 Brock.
+- **O que Buscar nos 10 Boosters:**
+  - 🔥 **Ouro Absoluto:** Mais cópias de Masquerain, Combee ou Spinarak sem limite de 4 (cada cópia eleva seu dano para 150-200!).
+  - ⭐ **Cacturne (005/076) + Cacnea (004/076):** Causa 210 de dano por APENAS 1 Grama contra os 4 gênios do Enamorus! E com a Floresta da Vitalidade, Cacnea evolui no mesmo turno em que entra em jogo.
+  - ⭐ **Pincurchin:** Bate por 2 incolores punindo decks cheios de energias (Mag-Vire).
+  - ⭐ **Repelente e 2ª Recuperação de Energia:** Resgata energias descartadas pelo Bug Out.
+- **Armadilhas do Fichário (NÃO COLOQUE NO DECK):**
+  - 🚫 **Vespiquen:** Custa 3 energias incolores ([C][C][C]) e NÃO tem Bug Out. Se revelada no fundo do deck, dá 0 de dano e vai para o lixo.
+  - 🚫 **Ariados:** Agulha Secreta é um ATAQUE de 3 energias incolores ([C][C][C]), NÃO uma habilidade. Além disso, tem fraqueza a Luta e morre em 1 golpe para Landorus.
+  - 🚫 **Treinadores ou Pokémon fora do tema:** Diluem seu dano de Bug Out e são descartados à toa.
+- **Regra de Ouro em Campo:** No campo, mantenha APENAS Surskit e Masquerain! NUNCA baixe Combee ou Spinarak no banco — eles precisam ficar dentro do baralho para alimentar o dano do Bug Out. Use o ataque *Multiplicar* do Surskit no Turno 1 para puxar os outros 2 Surskits pro banco e limpar seu deck.
 
 ---
 

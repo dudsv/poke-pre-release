@@ -163,7 +163,7 @@ function updateTextPlaceholder() {
     magmortar: "Ex: 1 arcanine com growlithe, 1 delibird, 1 zinia, 1 electabuzz extra, 1 raikou ex",
     enamorus: "Ex: 1 tubo de lava, 1 altaria com swablu, 1 kecleon, 1 delibird, 1 zinia",
     kommo: "Ex: 1 morpeko, 1 sandslash com sandshrew, 1 raikou ex, 1 delibird, 1 zinia",
-    masquerain: "Ex: 1 ariados com spinarak, 1 cacturne, 2 surskit extra, 1 delibird, 1 zinia"
+    masquerain: "Ex: 1 cacturne com cacnea, 2 masquerain extra, 1 pincurchin, 1 repelente, 1 zinia"
   };
 
   textarea.placeholder = placeholders[state.selectedKit] || "Exemplo: 1 delibird, 2 zinia...";
@@ -242,22 +242,29 @@ function setupQuickParser() {
 
     // Reconhecimento de nomes e quantidades comuns
     const keywords = [
-      { id: "delibird", terms: ["delibird", "deli bird"] },
+      { id: "copias_extras", terms: ["electabuzz extra", "surskit extra", "jangmo-o extra", "landorus extra", "basico extra", "copia extra"] },
+      { id: "atacante_extra", terms: ["electivire extra", "masquerain extra", "kommo-o extra", "tornadus extra", "atacante extra"] },
+      { id: "bug_outer_extra", terms: ["combee extra", "spinarak extra", "bug outer", "inseto extra", "combee", "spinarak"] },
       { id: "zinia", terms: ["zinia", "zinnia", "confianca da zinia"] },
-      { id: "tubo_lava", terms: ["tubo de lava", "tubo", "pyroar", "lava"] },
-      { id: "pico_lendario", terms: ["pico lendario", "pico", "summit"] },
-      { id: "raikou_ex", terms: ["raikou", "raikou ex"] },
-      { id: "arcanine", terms: ["arcanine", "growlithe", "presa energetica"] },
-      { id: "altaria", terms: ["altaria", "swablu"] },
+      { id: "repelente", terms: ["repelente", "repel"] },
+      { id: "doce_raro", terms: ["doce raro", "rare candy"] },
+      { id: "recuperacao_energia_extra", terms: ["recuperacao de energia", "energy retrieval", "recuperacao extra"] },
+      { id: "delibird", terms: ["delibird", "deli bird"] },
       { id: "ariados", terms: ["ariados", "agulha secreta"] },
-      { id: "cacturne", terms: ["cacturne", "cacnea", "punishing needle"] },
-      { id: "kecleon", terms: ["kecleon"] },
-      { id: "rotom_calor_ex", terms: ["rotom", "rotom calor", "heat rotom"] },
-      { id: "mega_rayquaza", terms: ["mega rayquaza", "rayquaza", "rayquaza ex"] },
-      { id: "marshadow", terms: ["marshadow", "virizion", "morpeko"] },
+      { id: "tubo_lava", terms: ["tubo de lava", "tubo", "pyroar", "lava"] },
+      { id: "arcanine", terms: ["arcanine", "growlithe", "presa energetica"] },
+      { id: "raikou_ex", terms: ["raikou", "raikou ex"] },
+      { id: "altaria", terms: ["altaria", "swablu"] },
       { id: "sandslash", terms: ["sandslash", "sandshrew"] },
-      { id: "copias_extras", terms: ["electabuzz", "surskit", "jangmo-o", "landorus"] },
-      { id: "electivire_extra", terms: ["electivire", "masquerain extra", "kommo-o extra", "tornadus"] }
+      { id: "vespiquen", terms: ["vespiquen", "vespiqueen", "clean hit"] },
+      { id: "heracross", terms: ["heracross", "spike draw"] },
+      { id: "cacturne", terms: ["cacturne", "cacnea"] },
+      { id: "aarune", terms: ["aarune", "arune"] },
+      { id: "emcees_hype", terms: ["emcee", "emcees hype", "empolgacao do mestre", "mestre"] },
+      { id: "onigiri", terms: ["onigiri", "delicious onigiri", "onigiri delicioso"] },
+      { id: "custom_vest", terms: ["colete", "custom vest", "colete customizado"] },
+      { id: "tate_liza", terms: ["tate", "liza", "tate & liza", "treino de tate"] },
+      { id: "mega_rayquaza", terms: ["mega rayquaza", "rayquaza", "rayquaza ex"] }
     ];
 
     let foundAny = false;

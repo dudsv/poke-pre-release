@@ -1,20 +1,20 @@
 # Contexto do Projeto: Pré-Lançamento Reinado Delta (Pokémon TCG)
 
 - **Repositório:** `prereleasepoke`
-- **Última Atualização:** 2026-10-24 (v1.5.0)
-- **Domínio:** Pokémon Trading Card Game (TCG) — Formato Selado / Pré-lançamento (Build & Battle) da Coleção Reinado Delta (Delta Reign).
+- **Última Atualização:** 2026-10-24 (v1.6.1)
+- **Domínio:** Pokémon Trading Card Game (TCG) — Formato Selado / Pré-lançamento (Build & Battle) da Coleção Reinado Delta (Delta Reign / Storm Emeralda M6).
 
 ---
 
 ## 1. Visão Geral do Domínio
 
-A coleção **Reinado Delta (Delta Reign)** é um marco competitivo de Pokémon TCG, introduzindo novas mecânicas de Mega Evolução, estádios lendários com requisitos duplos e arquétipos baseados em espécies Delta e habilidades sinérgicas.
+A coleção **Reinado Delta (Delta Reign / Storm Emeralda M6)** é um marco competitivo de Pokémon TCG, introduzindo novas mecânicas de Mega Evolução, estádios lendários com requisitos duplos e arquétipos baseados em espécies Delta e habilidades sinérgicas.
 
 No formato pré-lançamento físico nacional (Copag / Brasil):
 - Jogadores recebem 1 caixa Build & Battle contendo 1 baralho pré-construído de 40 cartas (guiado por uma das 4 cartas promocionais exclusivas com carimbo dourado) e **10 pacotes de booster de 6 cartas** (pool de 60 cartas abertas nos boosters).
 - Os decks jogam com exatamente 40 cartas e disputam partidas de 4 cartas de prêmio em formato Melhor de 1 (MD1).
 - Não há limite de 4 cópias para a mesma carta durante a montagem do baralho.
-- Com 60 cartas abertas, a probabilidade estatística de abrir techs fundamentais (Repelente, Doce Raro extra, 3º Landorus, Delibird, Arcanine, Ariados) sobe para mais de 85%, permitindo refinamento agressivo dos decks.
+- Com 60 cartas abertas, a probabilidade estatística de abrir techs fundamentais (Repelente, Doce Raro extra, 3º Landorus, Delibird, Cacturne, Pincurchin, cópias extras de Bug Outers) sobe para mais de 85%, permitindo refinamento agressivo dos decks.
 
 ---
 
@@ -22,7 +22,7 @@ No formato pré-lançamento físico nacional (Copag / Brasil):
 
 1. **Magmortar & Electivire (Mag-Vire):**
    - Papel: O melhor baralho do formato (BDIF).
-   - Motor: Habilidade *Buddy Boost* de Magmortar ligando energias de Fogo e Raio ao Electivire; *Voltage Hammer* causando 60x por energia descartada.
+   - Motor: Habilidade *Buddy Boost* de Magmortar ligando energias de Fogo e Raio ao Electivire; *Voltaic Hammer* causando 60x por energia descartada.
    - Núcleo Intocável: 3 Magmortar, 3 Electabuzz, 2 Electivire, 4 Lilian.
 2. **Solidariedade Materializada (Enamorus / Terians / Gênios):**
    - Papel: Deck de alta velocidade e controle.
@@ -30,12 +30,14 @@ No formato pré-lançamento físico nacional (Copag / Brasil):
    - Núcleo Intocável: 4 Tornadus, 3 Thundurus, 2 Landorus, 2 Enamorus (não cortar o Pokémon!), 3 Lilian, 3 Brock, 1 Gládio, 1 Repelente.
 3. **Clangor de Escamas (Kommo-o / Dragões):**
    - Papel: Deck de Estágio 2 com dano massivo (170).
-   - Motor: *Beast Scales* acelera energias do topo do deck. Sofre com dispersão de 4 tipos de energia no kit base.
+   - Motor: *Scale Beat* acelera energias do topo do deck nos Dragões. Vem de fábrica com 3 Druddigon (120 HP) com o ataque *Drag Off* ([F][W], 40 de dano + puxa o banco).
    - Núcleo Intocável: 4 Jangmo-o, 4 Hakamo-o, 3 Kommo-o, 4 Lilian, 4 Poké Pad, 2 Brock, 1 Doce Raro.
 4. **Insetofobia (Masquerain / Surskit):**
-   - Papel: Deck de alta variância e dano exponencial (0 a 350).
-   - Motor: *Bug Out* revela o fundo do deck e bate 50x por Pokémon com o ataque. Sofre contra decks de Fogo e falta de recuperação.
-   - Núcleo Intocável: 4 Surskit, 4 Masquerain, 4 Combee (no deck), 4 Spinarak (no deck), 4 Lilian, 1 Cinza Sagrada, 1 Recuperação de Energia.
+   - Papel: Deck de alta velocidade com ciclo de autolimpante e dano de 50 a 200+.
+   - Motor: *Bug Out* revela o fundo do deck e bate 50x por Pokémon com o ataque. Os Bug Outers revelados voltam para o deck e o restante (energias e treinadores) é descartado, purificando a densidade de insetos a cada turno!
+   - Kit Base Oficial: 4 Surskit (busca 2 Surskit via *Multiplicar* [C]), 4 Masquerain, 4 Combee, 4 Spinarak, 4 Brock, 3 Lilian, 4 Poké Pad, 1 Recuperação de Energia, 1 Cinza Sagrada, 2 Floresta da Vitalidade (evolui no mesmo turno!), 7 Grama e 2 Energia de Crescimento (+20 HP).
+   - Tech Estrela dos Boosters: *Cacturne (005/076)* — bate por 1 Grama [G] e causa 210 de dano contra decks de 4 habilidades (Enamorus)!
+   - Armadilhas do Fichário: Vespiquen (3 incolores [C][C][C], sem Bug Out), Heracross (3 energias, sem Bug Out) e Ariados (Agulha Secreta custa [C][C][C] 3 energias, não é habilidade, e morre para Landorus por fraqueza a Luta).
 
 ---
 

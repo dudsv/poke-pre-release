@@ -51,15 +51,52 @@ onde $N = 40$ (tamanho do deck), $n = 7$ (mão inicial) e $K$ é o número de Po
 - **Masquerain com 12 básicos:** $P(X = 0) \approx 5,8\%$ (mínimo risco de mulligan).
 
 ### 2.5 Preservação Estrita do Núcleo Intocável (`core: true`)
-Cartas marcadas como `core: true` no dicionário `BASE_DECKS` são bloqueadas contra corte:
+Cartas marcadas como `core: true` no dicionário `BASE_DECKS` são bloqueadas contra corte pelo motor determinístico:
 - **Mag-Vire:** 3 Magmortar, 3 Electabuzz, 2 Electivire, 4 Lilian.
-- **Gênios:** 4 Tornadus, 3 Thundurus, 2 Landorus, 2 Enamorus, 3 Lilian, 3 Brock, 1 Gládio, 1 Repelente.
+- **Gênios:** 4 Tornadus, 3 Thundurus, 2 Landorus, 2 Enamorus, 3 Lilian, 3 Brock, 1 Gládio, 1 Cinza Sagrada, 1 Repelente.
 - **Kommo-o:** 4 Jangmo-o, 4 Hakamo-o, 3 Kommo-o, 4 Lilian, 4 Poké Pad, 2 Brock, 1 Doce Raro.
-- **Masquerain:** 4 Surskit, 4 Masquerain, 4 Combee (no deck), 4 Spinarak (no deck), 4 Lilian, 1 Cinza Sagrada, 1 Recuperação de Energia.
+- **Masquerain:** 4 Surskit, 4 Masquerain, 4 Combee, 4 Spinarak (todos os 16 Insetos são intocáveis para garantir o dano de Bug Out!), 3 Lilian, 1 Cinza Sagrada, 1 Recuperação de Energia.
 
 ---
 
-## 3. Alterações e Modelagem Mobile Zero-Install (v1.5.0)
+## 3. Calibração Real com as Listas Físicas Oficiais (v1.6.0)
+
+### 3.1 Correção Cirúrgica das 4 Decklists Base (Evidência Fílmica/Fotográfica Oficial)
+1. **Kit Masquerain (Insetofobia):**
+   - **Correção:** Eliminação total de Ultra Ball (que nunca existiu no kit físico).
+   - **Composição Oficial:** 4 Surskit, 4 Masquerain, 4 Spinarak, 4 Combee (16 Pokémon Inseto), 4 Busca do Brock, 3 Lilian, 4 Poké Pad, 1 Recuperação de Energia, 1 Cinza Sagrada, 2 Floresta da Vitalidade, 7 Energia de Grama e 2 Energia de Crescimento (+20 HP).
+   - **Cuts & Keeps:** Os 16 insetos são 100% protegidos (`core: true`). Os cortes de espaço quando entram pulls recaem na 2ª Floresta da Vitalidade, no 4º Brock ou no 4º Poké Pad.
+2. **Kit Mag-Vire (Magmortar & Electivire):**
+   - **Correção:** Eliminação de Air Balloon. Ajuste de 2 Hilda, 4 Poké Pad e 3 Lanternas de Aventura.
+3. **Kit Enamorus (Solidariedade):**
+   - **Correção:** 3 Ultra Ball, 3 Poké Pad, 2 Busca de Energia, 1 Cinza Sagrada, 1 Repelente, 1 Balão de Ar, 4 Luta, 4 Psíquica e 3 Raio.
+4. **Kit Kommo-o (Dragões):**
+   - **Correção:** Substituição de Drampa/Dratini/Dragonair por 3 Druddigon (Crimgan) com 120 HP. Ajuste de energias para 5 Raio, 4 Luta, 2 Água e 2 Fogo.
+
+### 3.2 Novo Catálogo Realista de Pulls Notáveis
+- Reestruturação em 3 categorias práticas:
+  - **Cópias Extras do Tema:** Regra sem limite de 4 cópias para entupir atacantes e básicos dos temas.
+  - **Suportes Universais:** Confiança da Zínia, Repelente, Doce Raro extra, Recuperação de Energia extra e Delibird.
+  - **Techs Específicas de Alta Sinergia:** Cacturne (terror dos gênios por 1 Grama), Pincurchin (anti-acúmulo de energias por 2 incolores), Arcanine (para Mag-Vire com Buddy Boost), Raikou ex, Altaria e Sandslash.
+- Eliminação de suposições fantasiosas de combos inacessíveis, garantindo que o jogador receba alertas e cortes que refletem o jogo real na loja.
+
+### 3.3 Auditoria Profunda de Mecânicas, Custos e Armadilhas do Formato (v1.6.1)
+1. **Desmistificação de Ariados (#045/076):**
+   - **Correção de Regra:** *Agulha Secreta (Covert Needle)* NÃO é uma habilidade passiva! É um ataque que exige 3 energias incolores (`[C][C][C]`) para causar 80 de dano e então conceder imunidade a Básicos no turno seguinte.
+   - **Inviabilidade em Selado:** O kit Masquerain não possui aceleração de energia. Ligar 3 energias manualmente leva 3 turnos.
+   - **Fraqueza Fatal:** Ariados tem Fraqueza a Luta x2. O Landorus do kit Enamorus causa 110 x 2 = 220 de dano, matando Ariados em 1 hit antes que ele consiga atacar. Reclassificado como **Armadilha / Fichário (Tier C)**.
+2. **Vespiquen (#007/076) e Heracross (#001/076):**
+   - *Clean Hit* da Vespiquen custa 3 energias incolores (`[C][C][C]`). Vespiquen NÃO possui o ataque Bug Out. Se revelada no fundo do deck pelo Masquerain, causa 0 de dano e é descartada no lixo. Além disso, evoluir Combee remove um Bug Outer do deck.
+   - *High Horsepower* do Heracross custa 3 energias (`[G][G][C]`) e não tem Bug Out. Ambas devem permanecer no fichário.
+3. **Cacturne (#005/076) + Cacnea (#004/076) — O Terror dos Gênios:**
+   - *Punishing Needles* custa apenas **1 Energia de Grama (`[G]`)** e causa $10 + 50 \times \text{Habilidades}$ rivais.
+   - Contra o kit de Enamorus (4 terians em campo com habilidade), Cacturne desfere **210 de dano em 1HKO** por 1 energia!
+   - **Sinergia com Floresta da Vitalidade:** O estádio do kit Masquerain permite que Pokémon de Grama evoluam no mesmo turno em que entram em jogo. Cacnea pode ser baixado e evoluído para Cacturne no mesmo turno para atacar imediatamente.
+4. **O Motor Autolimpante do Bug Out (Masquerain / Combee / Spinarak):**
+   - No kit base, apenas Masquerain, Combee e Spinarak (12 cartas) possuem o ataque Bug Out impresso.
+   - *Bug Out* revela 7 cartas do fundo: causa 50x por Pokémon com Bug Out, **embaralha esses Pokémon de volta ao deck** e **descarta o restante** (energias e treinadores).
+   - O efeito natural é a purificação do deck: a densidade de Bug Outers sobe a cada turno, atingindo médias de 150 a 200 de dano nos turnos 3 e 4.
+   - Surskit (50 HP) não tem Bug Out, mas seu ataque *Multiplicar* (`[C]`) busca 2 outros Surskit para o banco no Turno 1, filtrando o deck logo no início.
 
 ### 3.1 Calibração para 10 Boosters de 6 Cartas (Pool de 60 Cartas Copag)
 - **Aumento do Pool de Modificação:** No formato nacional Copag, o jogador abre 10 boosters de 6 cartas (= 60 cartas abertas), ao invés dos 4 boosters internacionais (40 cartas).

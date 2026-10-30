@@ -47,6 +47,7 @@
 - **Cartas que NUNCA Saem:** 3 Magmortar, 3 Electabuzz, 2 Electivire, 4 Lilian.
 - **O que Buscar nos 10 Boosters:** 4º Electabuzz e 3º Electivire (prioridade máxima), Repelente, Arcanine+Growlithe, Delibird, Zínia.
 - **Armadilha:** Guarde o *Tubo de Lava Lendário* no fichário (ele desliga seu próprio Magmortar).
+- **💎 Dica de Mercado Pós-Torneio (TCGplayer):** O seu kit já vem de fábrica com **3x Lanterna de Aventura (Adventuring Lantern - DLR 090/103)**. Trata-se da carta incomum mais valiosa e disputada da coleção para o formato Standard! Guarde-as com cuidado e não as passe adiante como cartas comuns.
 
 ### Deck 2: Solidariedade (Gênios / Enamorus)
 - **Condição de Vitória:** 4 terians em campo = custos incolores zerados (Tornadus bate 70 de graça e compra até 6).
@@ -66,7 +67,7 @@
 - **O que Cortar Primeiro:** O kit vem com 2 Florestas da Vitalidade e 4 Brocks. Se abrir pulls relevantes, corte 1 Floresta da Vitalidade e 1 Brock.
 - **O que Buscar nos 10 Boosters:**
   - 🔥 **Ouro Absoluto:** Mais cópias de Masquerain, Combee ou Spinarak sem limite de 4 (cada cópia eleva seu dano para 150-200!).
-  - ⭐ **Cacturne (005/076) + Cacnea (004/076):** Causa 210 de dano por APENAS 1 Grama contra os 4 gênios do Enamorus! E com a Floresta da Vitalidade, Cacnea evolui no mesmo turno em que entra em jogo.
+  - ⭐ **Cacturne (DLR 005/103) + Cacnea (DLR 004/103):** Causa 210 de dano por APENAS 1 Grama contra os 4 gênios do Enamorus! E com a Floresta da Vitalidade, Cacnea evolui no mesmo turno em que entra em jogo.
   - ⭐ **Pincurchin:** Bate por 2 incolores punindo decks cheios de energias (Mag-Vire).
   - ⭐ **Repelente e 2ª Recuperação de Energia:** Resgata energias descartadas pelo Bug Out.
 - **Armadilhas do Fichário (NÃO COLOQUE NO DECK):**

@@ -24,6 +24,7 @@ Este índice organiza toda a documentação técnica, tática e de usuário gera
 ---
 
 ## 3. Dossiês Individuais por Fonte e Vídeo
+- [Dossiê da Comunidade, Checklist Oficial Delta Reign & Guia Pós-Lançamento](file:///c:/dev/prereleasepoke/docs/comunidade/analise_comunidade_e_guia_pos_lancamento.md): Síntese de Reddit PTCGL, PokéCottage (checklist 103 cards), vídeos nacionais (Bugado Playz, VINTCG, TiuSam) e TCGplayer Buyer's Guide.
 - [Canal Fantasma Cinza - Perfil e Linha Editorial](file:///c:/dev/prereleasepoke/docs/canais/fantasma_cinza_perfil.md): Filosofia de jogo, abordagem técnica e histórico de Igor Donini.
 - [Vídeo 1: Análise Completa da Coleção (VINTCG)](file:///c:/dev/prereleasepoke/docs/videos/01_analise_completa_reinado_delta_vintcg.md): Desconstrução de todos os EXs, Megas e impacto no LAIC.
 - [Vídeo 2: Guia de Decks e Melhores Pulls (TrustYourPilot)](file:///c:/dev/prereleasepoke/docs/videos/02_guia_prerelease_trustyourpilot.md): Listas dos 4 kits, regras sem limite de cópias e techs recomendadas.
@@ -37,5 +38,6 @@ Este índice organiza toda a documentação técnica, tática e de usuário gera
 - [Contexto Vivo do Projeto](file:///c:/dev/prereleasepoke/.agent/context/context.md): Visão geral do repositório, domínio do TCG, kits e regras base.
 - [Documentação Técnica](file:///c:/dev/prereleasepoke/.agent/context/docs/documentacao_tecnica.md): Detalhamento da extração de dados, arquitetura da aplicação `/app`, testes unitários e regras do motor.
 - [Documentação do Usuário](file:///c:/dev/prereleasepoke/.agent/context/docs/documentacao_usuario.md): Guia prático de aplicação para o jogador e manual do assistente.
+- [Plano de Absorção de Links da Comunidade e Pós-Lançamento](file:///c:/dev/prereleasepoke/docs/planning/plano_absorcao_links_e_comunidade_delta_reign.md): Rastreabilidade da v1.7.0.
 - [Plano de Execução e Absorção](file:///c:/dev/prereleasepoke/docs/planning/plano_absorcao_conteudo_reinado_delta.md): Rastreabilidade inicial.
 - [README Principal](file:///c:/dev/prereleasepoke/README.md): Portal de entrada do projeto no padrão GitHub.

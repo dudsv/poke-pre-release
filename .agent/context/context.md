@@ -1,8 +1,9 @@
 # Contexto do Projeto: Pré-Lançamento Reinado Delta (Pokémon TCG)
 
 - **Repositório:** `prereleasepoke`
-- **Última Atualização:** 2026-10-24 (v1.6.1)
-- **Domínio:** Pokémon Trading Card Game (TCG) — Formato Selado / Pré-lançamento (Build & Battle) da Coleção Reinado Delta (Delta Reign / Storm Emeralda M6).
+- **Última Atualização:** 2026-10-30 (v1.7.0)
+- **Domínio:** Pokémon Trading Card Game (TCG) — Formato Selado / Pré-lançamento (Build & Battle) da Coleção Reinado Delta (Delta Reign ME6/DLR & Storm Emeralda M6).
+- **Fontes da Comunidade Integradas:** Reddit (`/r/PTCGL`), PokéCottage (*Card List 141 cards*), Bugado Playz (*W4MQfFQcOqE*), VINTCG (*sufn0o0djFk*), TiuSam (*GWcZHfw8tb0*) e TCGplayer (*Buyer's Guide*).
 
 ---
 

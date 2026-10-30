@@ -17,7 +17,7 @@ const KITS_DATA = {
     type: "Fogo & Raio",
     overview: "O baralho mais estável do formato. Magmortar (140 HP) liga Fogo/Raio da mão; Electivire (Voltage Hammer) causa 60x por energia descartada. Vem com 3 Recuperações de Energia, mas ZERO recuperação de Pokémon.",
     idealTurnOrder: "Ir Primeiro (evoluir no Turno 2 e começar a acelerar antes do oponente)",
-    goldenPullsSummary: "Com 60 cartas abertas (10 boosters de 6 cartas), sua prioridade absoluta é fechar o 4º Electabuzz e 3º Electivire (TrustYourPilot). Busque também Repelente (para forçar Landorus/Jangmo-o do banco rival), Arcanine+Growlithe, Raikou ex, Delibird e Confiança da Zínia.",
+    goldenPullsSummary: "Com 60 cartas abertas (10 boosters de 6 cartas), sua prioridade absoluta é fechar o 4º Electabuzz e 3º Electivire (TrustYourPilot). Busque também Repelente (para forçar Landorus/Jangmo-o do banco rival), Arcanine+Growlithe, Raikou ex, Delibird e Confiança da Zínia. 💎 Dica de Mercado (TCGplayer): Seu kit já vem com 3x Lanterna de Aventura (DLR 090/103), a incomum mais cobiçada e valorizada de Delta Reign para o formato Standard! Guarde com cuidado.",
     trapsSummary: "Tubo de Lava Lendário desliga seu próprio Magmortar (fica no fichário). Mega Rayquaza ex: no máximo 1 cópia, cede 3 prêmios e é fraco a Raio.",
     primaryEnergy: "Energia de Raio Básica",
     ratio: { pokemon: [12, 16], trainer: [12, 16], energy: [11, 13], basicsMin: 7 },
@@ -463,7 +463,7 @@ const KITS_DATA = {
     type: "Grama",
     overview: "Motor Bug Out (1 Grama): Revela as 7 cartas do fundo do baralho. Causa 50 de dano para CADA Pokémon revelado que possua o ataque Bug Out impresso na carta. Em seguida, EMBARALHA os Pokémon revelados de volta no baralho e DESCARTA todas as outras cartas (Energias, Apoiadores, Itens e Pokémon sem Bug Out). O kit base possui exatamente 12 Bug Outers: 4 Masquerain, 4 Combee e 4 Spinarak! Surskit NÃO tem Bug Out, mas possui Multiplicar ([C]): busca 2 Surskits e coloca no banco, limpando o deck de cartas sem Bug Out! Floresta da Vitalidade permite que seus Pokémon de Grama evoluam no mesmo turno em que entram em jogo. Energia de Crescimento (+20 HP) eleva Masquerain a 130 HP, sobrevivendo a todos os ataques dos gênios rivais.",
     idealTurnOrder: "Ir Segundo se abrir com Surskit + Energia (Multiplicar no T1 busca 2 Surskit); Ir Primeiro se já tiver a linha Masquerain na mão inicial",
-    goldenPullsSummary: "🔥 OURO ABSOLUTO (Tier S+): Mais cópias de Masquerain, Combee ou Spinarak dos boosters! Sem limite de 4 cópias no pré-lançamento, cada cópia extra aumenta a densidade de Bug Outers e garante nocautes de 150-200 dano todo turno. ⭐ Tier S: Linha Cacturne (005/076) + Cacnea (004/076) — Punishing Needles custa apenas 1 [G] e causa 210 de dano contra decks de 4 habilidades (Enamorus), evoluindo no mesmo turno via Floresta da Vitalidade! ⭐ Tier A: Repelente e 2ª Recuperação de Energia (essencial para resgatar energias descartadas pelo Bug Out). 🚫 ARMADILHAS DO FICHÁRIO: Vespiquen (custa [C][C][C] 3 energias e NÃO tem Bug Out), Heracross (3 energias, sem Bug Out) e Ariados (Agulha Secreta custa [C][C][C] 3 energias, veneno exige Noturna, e Fraqueza a Luta x2 morre para Landorus).",
+    goldenPullsSummary: "🔥 OURO ABSOLUTO (Tier S+): Mais cópias de Masquerain, Combee ou Spinarak dos boosters! Sem limite de 4 cópias no pré-lançamento, cada cópia extra aumenta a densidade de Bug Outers e garante nocautes de 150-200 dano todo turno. ⭐ Tier S: Linha Cacturne (DLR 005/103) + Cacnea (DLR 004/103) — Punishing Needles custa apenas 1 [G] e causa 210 de dano contra decks de 4 habilidades (Enamorus), evoluindo no mesmo turno via Floresta da Vitalidade! ⭐ Tier A: Repelente e 2ª Recuperação de Energia (essencial para resgatar energias descartadas pelo Bug Out). 🚫 ARMADILHAS DO FICHÁRIO: Vespiquen (custa [C][C][C] 3 energias e NÃO tem Bug Out), Heracross (3 energias, sem Bug Out) e Ariados (Agulha Secreta custa [C][C][C] 3 energias, veneno exige Noturna, e Fraqueza a Luta x2 morre para Landorus).",
     trapsSummary: "NUNCA corte Combee ou Spinarak: eles são os Bug Outers que garantem seus 150 de dano! Cortá-los destrói a probabilidade matemática do baralho. NUNCA coloque Vespiquen ou atacantes pesados de 3 energias que não tenham Bug Out: eles não batem no Bug Out, vão para o lixo e você não tem aceleração de energia.",
     primaryEnergy: "Energia de Grama Básica",
     ratio: { pokemon: [16, 24], trainer: [9, 14], energy: [8, 10], basicsMin: 12 },
@@ -560,7 +560,7 @@ const KITS_DATA = {
         advantage: "45/55 Parelho a Levemente Desfavorável (80/20 se abrir Cacturne!)",
         statusClass: "adv-even",
         target: "Tornadus ou Landorus",
-        plan: "A MATEMÁTICA REAL A SEU FAVOR: Tornadus bate 70 por 0 energias. Masquerain tem 110 HP (ou 130 HP com Energia de Crescimento) — SOBREVIVE ao primeiro ataque do Tornadus! No contra-ataque, Bug Out com 3 insetos causa 150 de dano, NOCAUTEANDO Tornadus (110 HP), Thundurus (120 HP), Enamorus (120 HP) ou Landorus (130 HP) em 1 único golpe! Se você abriu Cacturne (005/076) + Cacnea nos boosters: evolua no mesmo turno com a Floresta da Vitalidade e use Punishing Needles por APENAS 1 GRAMA ([G]) — causa 210 de dano letal contra os 4 gênios em campo! Ariados é armadilha: Agulha Secreta custa 3 energias e Landorus mata Ariados por fraqueza a Luta x2.",
+        plan: "A MATEMÁTICA REAL A SEU FAVOR: Tornadus bate 70 por 0 energias. Masquerain tem 110 HP (ou 130 HP com Energia de Crescimento) — SOBREVIVE ao primeiro ataque do Tornadus! No contra-ataque, Bug Out com 3 insetos causa 150 de dano, NOCAUTEANDO Tornadus (110 HP), Thundurus (120 HP), Enamorus (120 HP) ou Landorus (130 HP) em 1 único golpe! Se você abriu Cacturne (DLR 005/103) + Cacnea nos boosters: evolua no mesmo turno com a Floresta da Vitalidade e use Punishing Needles por APENAS 1 GRAMA ([G]) — causa 210 de dano letal contra os 4 gênios em campo! Ariados é armadilha: Agulha Secreta custa 3 energias e Landorus mata Ariados por fraqueza a Luta x2.",
         caution: "Cuidado com Gládio rival jogado como última carta (Landorus bate 190). Não deixe Landorus com Gládio preparado.",
         execution: {
           howToTarget: "O rival vai manter Tornadus no ativo batendo 70 de graça. Suba Masquerain com Energia de Crescimento (130 HP). O golpe de 70 do Tornadus deixa você com 60 HP. No seu turno, declare Bug Out com 3 insetos: 150 de dano elimina o Tornadus rival em 1 hit! Se o rival promover Landorus, declare Bug Out novamente para outro nocaute de 150.",
@@ -663,9 +663,9 @@ const BOOSTER_CARDS = [
   // --- CATEGORIA 2: SUPORTES UNIVERSAIS E TREINADORES DE IMPACTO ---
   {
     id: "zinia",
-    name: "Confiança da Zínia (Zinnia's Trust)",
+    name: "Confiança da Zínia (Zinnia's Trust - DLR 103/103)",
     tier: "S", type: "trainer", category: "Apoiador de Troca", badge: "MVP Suporte",
-    description: "Troca o ativo pelo banco e move energia. O formato não possui Troca nem Corda de Fuga comuns.",
+    description: "Troca o ativo pelo banco e move energia. O formato não possui Troca nem Corda de Fuga comuns. [DLR 103/103]",
     adds: [{ name: "Confiança da Zínia (Zinnia's Trust)", type: "trainer", supporter: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 10, note: "🔥 Destrava o recuo pesado de Magmortar/Electivire e reseta condições especiais." },
@@ -715,9 +715,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "delibird",
-    name: "Delibird",
+    name: "Delibird (DLR 079/103)",
     tier: "A", type: "pokemon", category: "Básico Universal", badge: "Busca de Energia",
-    description: "No ativo, 1x por turno: olha o topo 6, pega 1 energia básica, o resto vai para o fundo.",
+    description: "No ativo, 1x por turno: olha o topo 6, pega 1 energia básica, o resto vai para o fundo. [DLR 079/103]",
     adds: [{ name: "Delibird", type: "pokemon", basic: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 9, note: "⭐ Garante Fogo e Raio na mão todo turno para ativar o Buddy Boost." },
@@ -726,12 +726,11 @@ const BOOSTER_CARDS = [
       masquerain: { score: 5, note: "⚠️ Neutro: coloca cartas no fundo do deck onde o Bug Out olha (pode diluir insetos)." }
     }
   },
-
   {
     id: "pincurchin",
-    name: "Pincurchin",
+    name: "Pincurchin (DLR 036/103)",
     tier: "A", type: "pokemon", category: "Atacante Neutro / Controle", badge: "2 Incolores (Energy Crush)",
-    description: "Básico de 80 HP. Energy Crush: [C][C] (2 Incolores) — causa 20 de dano para cada energia ligada a TODOS os Pokémon do seu oponente! Destrói decks que acumulam muita energia (Mag-Vire e Kommo-o) usando qualquer energia.",
+    description: "Básico de 80 HP. Energy Crush: [C][C] (2 Incolores) — causa 20 de dano para cada energia ligada a TODOS os Pokémon do seu oponente! Destrói decks que acumulam muita energia (Mag-Vire e Kommo-o) usando qualquer energia. [DLR 036/103]",
     adds: [{ name: "Pincurchin", type: "pokemon", basic: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 6, note: "Pode usar qualquer energia, mas Electivire já bate muito." },
@@ -742,9 +741,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "cacturne",
-    name: "Cacturne + Cacnea",
+    name: "Cacturne + Cacnea (DLR 005/103 & 004/103)",
     tier: "S", type: "pokemon", category: "Punidor de Habilidades", badge: "1 Grama (Anti-Gênios)",
-    description: "Punishing Needles: APENAS 1 ENERGIA DE GRAMA ([G])! Causa 10 + 50 de dano para CADA Pokémon com habilidade em jogo do rival (com os 4 Gênios na mesa, causa 210 de dano por 1 energia!). Com a Floresta da Vitalidade do kit Masquerain, você pode baixar Cacnea e evoluir para Cacturne no MESMO TURNO! Conta 2 cartas.",
+    description: "Punishing Needles: APENAS 1 ENERGIA DE GRAMA ([G])! Causa 10 + 50 de dano para CADA Pokémon com habilidade em jogo do rival (com os 4 Gênios na mesa, causa 210 de dano por 1 energia!). Com a Floresta da Vitalidade do kit Masquerain, você pode baixar Cacnea e evoluir para Cacturne no MESMO TURNO! Conta 2 cartas. [DLR 005/103 & 004/103]",
     adds: [
       { name: "Cacnea", type: "pokemon", basic: true, count: 1 },
       { name: "Cacturne", type: "pokemon", count: 1 }
@@ -758,9 +757,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "ariados",
-    name: "Ariados (Evolui sobre Spinarak)",
+    name: "Ariados (DLR 059/103)",
     tier: "C", type: "pokemon", category: "Armadilha / Fichário", badge: "Inviável [C][C][C]",
-    description: "Evolui sobre Spinarak. CUIDADO: Agulha Secreta (Covert Needle) é um ATAQUE que custa 3 Incolores ([C][C][C]), NÃO uma habilidade passiva! O veneno Tormenting Poison exige Energia Noturna ([D]). Sem aceleração de energia e com Fraqueza a Luta x2 (Landorus mata em 1 hit com 220 de dano), evoluir Spinarak tira um Bug Outer do deck e quebra o motor do Masquerain.",
+    description: "Evolui sobre Spinarak. CUIDADO: Agulha Secreta (Covert Needle) é um ATAQUE que custa 3 Incolores ([C][C][C]), NÃO uma habilidade passiva! O veneno Tormenting Poison exige Energia Noturna ([D]). Sem aceleração de energia e com Fraqueza a Luta x2 (Landorus mata em 1 hit com 220 de dano), evoluir Spinarak tira um Bug Outer do deck e quebra o motor do Masquerain. [DLR 059/103]",
     addsByKit: {
       masquerain: [{ name: "Ariados", type: "pokemon", count: 1 }],
       magmortar: [{ name: "Ariados", type: "pokemon", count: 1 }],
@@ -776,9 +775,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "vespiquen",
-    name: "Vespiquen (Evolui sobre Combee)",
+    name: "Vespiquen (DLR 007/103)",
     tier: "C", type: "pokemon", category: "Armadilha / Fichário", badge: "Inviável [C][C][C]",
-    description: "Pierce: [G] (40 de dano). Clean Hit: [C][C][C] (3 Incolores!) — 80 + 80 se o rival for Evolução. ATENÇÃO: Vespiquen NÃO tem o ataque Bug Out! Custa 3 energias para bater e evoluir Combee remove um Bug Outer do seu deck. Se revelada pelo Bug Out, causa 0 de dano e é descartada.",
+    description: "Pierce: [G] (40 de dano). Clean Hit: [C][C][C] (3 Incolores!) — 80 + 80 se o rival for Evolução. ATENÇÃO: Vespiquen NÃO tem o ataque Bug Out! Custa 3 energias para bater e evoluir Combee remove um Bug Outer do seu deck. Se revelada pelo Bug Out, causa 0 de dano e é descartada. [DLR 007/103]",
     adds: [{ name: "Vespiquen", type: "pokemon", count: 1 }],
     kitSynergies: {
       magmortar: { score: 0, note: "🚫 Fora de cor. Fichário." },
@@ -789,9 +788,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "heracross",
-    name: "Heracross",
+    name: "Heracross (DLR 001/103)",
     tier: "B", type: "pokemon", category: "Básico de Grama", badge: "1 Grama (Compra 2)",
-    description: "Spike Draw: [G] (1 Grama) causa 20 e compra 2 cartas. High Horsepower: [G][G][C] (3 energias) causa 130 de dano e 30 em si mesmo.",
+    description: "Spike Draw: [G] (1 Grama) causa 20 e compra 2 cartas. High Horsepower: [G][G][C] (3 energias) causa 130 de dano e 30 em si mesmo. [DLR 001/103]",
     adds: [{ name: "Heracross", type: "pokemon", basic: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 0, note: "🚫 Fora de cor." },
@@ -802,9 +801,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "arcanine",
-    name: "Arcanine + Growlithe",
+    name: "Arcanine + Growlithe (DLR 019/103 & 018/103)",
     tier: "B", type: "pokemon", category: "Atacante Fogo Pesado", badge: "3 Energias ([F][C][C])",
-    description: "Vigorous Fangs: [F][C][C] (3 energias: 1 Fogo + 2 Incolores) causa 180 de dano se o rival tiver ≤4 prêmios. Heat Tackle: [F][F][C][C] (4 energias). Exige Magmortar para acelerar, caso contrário é lento.",
+    description: "Vigorous Fangs: [F][C][C] (3 energias: 1 Fogo + 2 Incolores) causa 180 de dano se o rival tiver ≤4 prêmios. Heat Tackle: [F][F][C][C] (4 energias). Exige Magmortar para acelerar, caso contrário é lento. [DLR 019/103 & 018/103]",
     adds: [
       { name: "Growlithe", type: "pokemon", basic: true, count: 1 },
       { name: "Arcanine", type: "pokemon", count: 1 }
@@ -818,9 +817,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "aarune",
-    name: "Aarune (Buscador Tático)",
+    name: "Aarune (DLR 089/103)",
     tier: "A", type: "trainer", category: "Apoiador de Busca", badge: "Busca 3 Cartas",
-    description: "Busca no deck qualquer combinação de até 3 cartas entre Apoiadores e Estádios (ex: busca Lilian + Zínia + Estádio de uma vez).",
+    description: "Busca no deck qualquer combinação de até 3 cartas entre Apoiadores e Estádios (ex: busca Lilian + Zínia + Estádio de uma vez). [DLR 089/103]",
     adds: [{ name: "Aarune", type: "trainer", supporter: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 8, note: "⭐ Busca Lilian e Hilda simultaneamente, garantindo a mão do próximo turno." },
@@ -831,9 +830,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "emcees_hype",
-    name: "Empolgação do Mestre (Emcee's Hype)",
+    name: "Empolgação do Mestre (Emcee's Hype - DLR 092/103)",
     tier: "A", type: "trainer", category: "Apoiador de Compra", badge: "Compra 2 a 4",
-    description: "Compra 2 cartas. Se o oponente tiver 3 ou menos prêmios restantes (o que acontece em quase todo o jogo de 4 prêmios), compra 4 cartas!",
+    description: "Compra 2 cartas. Se o oponente tiver 3 ou menos prêmios restantes (o que acontece em quase todo o jogo de 4 prêmios), compra 4 cartas! [DLR 092/103]",
     adds: [{ name: "Empolgação do Mestre (Emcee's Hype)", type: "trainer", supporter: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 7, note: "Boa compra direta sem embaralhar a mão." },
@@ -844,9 +843,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "onigiri",
-    name: "Onigiri Delicioso (Delicious Onigiri)",
+    name: "Onigiri Delicioso (Tasty Rice Ball - DLR 101/103)",
     tier: "B", type: "trainer", category: "Cura", badge: "Cura 30-90 HP",
-    description: "Cura 30 de dano do seu Pokémon Ativo. Cura +30 para cada outro Onigiri Delicioso no descarte (cura até 60-90 HP).",
+    description: "Cura 30 de dano do seu Pokémon Ativo. Cura +30 para cada outro Onigiri Delicioso no descarte (cura até 60-90 HP). [DLR 101/103]",
     adds: [{ name: "Onigiri Delicioso (Delicious Onigiri)", type: "trainer", count: 1 }],
     kitSynergies: {
       magmortar: { score: 5, note: "Ajuda Magmortar/Electivire (140 HP) a sobreviverem a golpes de 70." },
@@ -857,9 +856,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "custom_vest",
-    name: "Colete Customizado (Custom Vest)",
+    name: "Colete Customizado (Custom Vest - DLR 091/103)",
     tier: "B", type: "trainer", category: "Defesa contra Megas", badge: "-60 Dano de Mega",
-    description: "Ferramenta: Se ligada a um Pokémon que não seja Mega, ele recebe 60 a MENOS de dano de ataques de Mega Pokémon ex rivais.",
+    description: "Ferramenta: Se ligada a um Pokémon que não seja Mega, ele recebe 60 a MENOS de dano de ataques de Mega Pokémon ex rivais. [DLR 091/103]",
     adds: [{ name: "Colete Customizado (Custom Vest)", type: "trainer", count: 1 }],
     kitSynergies: {
       magmortar: { score: 6, note: "Defesa excelente se o adversário subir Mega Rayquaza." },
@@ -870,9 +869,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "tate_liza",
-    name: "Treino de Tate & Liza (Tate & Liza's Training)",
+    name: "Treino de Tate & Liza (Tate & Liza's Training - DLR 102/103)",
     tier: "B", type: "trainer", category: "Apoiador Reutilizável", badge: "Retorna à Mão",
-    description: "Compra 2 cartas. Se um Estádio Lendário estiver em jogo (Tubo de Lava, Pico ou Fossa), esta carta volta para sua mão em vez de ir pro descarte!",
+    description: "Compra 2 cartas. Se um Estádio Lendário estiver em jogo (Tubo de Lava, Pico ou Fossa), esta carta volta para sua mão em vez de ir pro descarte! [DLR 102/103]",
     adds: [{ name: "Treino de Tate & Liza (Tate & Liza's Training)", type: "trainer", supporter: true, count: 1 }],
     kitSynergies: {
       magmortar: { score: 4, note: "Só brilha se houver estádio lendário na mesa." },
@@ -883,9 +882,9 @@ const BOOSTER_CARDS = [
   },
   {
     id: "mega_rayquaza",
-    name: "Mega Rayquaza ex",
+    name: "Mega Rayquaza ex (DLR 084/103)",
     tier: "B", type: "pokemon", category: "Mega Pokémon", badge: "3 Prêmios",
-    description: "Habilidade só ativa ao ser jogado da mão para o BANCO. Cede 3 cartas de prêmio ao morrer; fraco a Raio.",
+    description: "Habilidade só ativa ao ser jogado da mão para o BANCO. Cede 3 cartas de prêmio ao morrer; fraco a Raio. [DLR 084/103]",
     adds: [{ name: "Mega Rayquaza ex", type: "pokemon", basic: true, count: 1 }],
     maxCopies: 1,
     kitSynergies: {

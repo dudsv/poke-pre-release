@@ -98,6 +98,18 @@ Cartas marcadas como `core: true` no dicionário `BASE_DECKS` são bloqueadas co
    - O efeito natural é a purificação do deck: a densidade de Bug Outers sobe a cada turno, atingindo médias de 150 a 200 de dano nos turnos 3 e 4.
    - Surskit (50 HP) não tem Bug Out, mas seu ataque *Multiplicar* (`[C]`) busca 2 outros Surskit para o banco no Turno 1, filtrando o deck logo no início.
 
+### 3.4 Integração das Fontes da Comunidade e Checklist Ocidental DLR (v1.7.0)
+1. **Confirmação Internacional via Reddit (`r/PTCGL`):**
+   - As 4 decklists calibradas foram cruzadas e validadas contra as listas oficiais compartilhadas na comunidade de PTCGL.
+2. **Checklist Oficial Ocidental (Delta Reign DLR 001/103 a 103/103):**
+   - Incorporação da expansão ocidental de 103 cartas principais (contra 76 do set japonês *Storm Emeralda*), integrando 27 cartas de Starter Decks (Meowscarada ex, Zoroark ex, Eevee ex).
+   - Numeração oficial refletida nas descrições de boosters e matchups (`DLR 005/103 Cacturne`, `DLR 090/103 Lanterna de Aventura`, `DLR 079/103 Delibird`, etc.).
+3. **Consenso Tático dos Criadores Nacionais (Bugado Playz, VINTCG, TiuSam):**
+   - Destaque para o formato Copag com 8 a 10 boosters (alta densidade de pulls).
+   - Atenção redobrada aos Megas (cedem 3 prêmios; risco desproporcional em MD1 de 4 prêmios).
+4. **Guia Econômico Pós-Lançamento (TCGplayer Buyer's Guide):**
+   - Identificação de cartas com alto valor financeiro no Standard: *Adventuring Lantern (DLR 090/103)* (3x no kit Mag-Vire!), *Zinnia's Trust (DLR 103/103)* e *Mega Rayquaza ex (DLR 084/103)*.
+
 ### 3.1 Calibração para 10 Boosters de 6 Cartas (Pool de 60 Cartas Copag)
 - **Aumento do Pool de Modificação:** No formato nacional Copag, o jogador abre 10 boosters de 6 cartas (= 60 cartas abertas), ao invés dos 4 boosters internacionais (40 cartas).
 - **Impacto Estatístico nos 4 Decks:**

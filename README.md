@@ -19,6 +19,21 @@ A aplicação web local (`/app`) roda de forma desacoplada, ultra rápida e **10
    - Dê duplo clique no [`iniciar_assistente.bat`](file:///c:/dev/prereleasepoke/iniciar_assistente.bat) no Windows (ou `python iniciar_assistente.py`).
    - Um **QR Code ASCII** aparecerá no terminal do computador: basta apontar a câmera do celular para abrir instantaneamente!
 
+### ✨ O que há de Novo na Versão 1.7.0 (Checklist Oficial Delta Reign, Comunidade & Guia de Mercado):
+1. **Integração do Checklist Oficial Delta Reign (103 Cartas + 38 Secretas):**
+   - Mapeamento da expansão internacional oficial (*Delta Reign*, DLR), que absorve os 76 cards da japonesa *Storm Emeralda* e adiciona 27 cards dos Starter Decks japoneses (totalizando 103 cartas regulares).
+   - Atualização de todas as numerações ocidentais oficiais no catálogo de pulls e na lógica de otimização (ex: *Cacturne* DLR 005/103, *Cacnea* DLR 004/103, *Ariados* DLR 059/103, *Vespiquen* DLR 007/103, *Delibird* DLR 079/103).
+2. **Consenso da Comunidade & Criadores Nacionais (Bugado Playz, VINTCG, TiuSam, r/PTCGL):**
+   - Confirmação das 4 listas oficiais de 40 cartas dos kits Build & Battle.
+   - Reforço do status de **BDIF do Mag-Vire** graças à aceleração orgânica e ao trio de Lanternas de Aventura.
+   - Posicionamento do **Masquerain como Glass Cannon**: letal quando pilotado com rigor (Turno 1 com Surskit *Multiplicar*, nunca baixando Spinarak/Combee no banco), mas vulnerável a fogo e a poluição do banco.
+3. **Visão de Mercado Pós-Lançamento (TCGplayer Buyer's Guide):**
+   - Identificação do tesouro oculto do kit Magmortar: **3 cópias de Lanterna de Aventura (*Adventuring Lantern* DLR 090/103)**, item staple indispensável no formato Standard para os decks de *Mega Rayquaza ex*, pagando grande parte da inscrição do torneio.
+4. **Novo Dossiê Completo da Comunidade:**
+   - Disponibilizado em [`docs/comunidade/analise_comunidade_e_guia_pos_lancamento.md`](file:///c:/dev/prereleasepoke/docs/comunidade/analise_comunidade_e_guia_pos_lancamento.md) contendo o checklist dos 103 cards, análise de criadores e dados econômicos.
+5. **Pacote Mobile Standalone Recompilado:**
+   - [`assistente_offline.html`](file:///c:/dev/prereleasepoke/assistente_offline.html) (158.4 KB) reempacotado com as referências oficiais DLR e notas de mercado.
+
 ### ✨ O que há de Novo na Versão 1.6.1 (Auditoria Profunda de Regras e Mecânicas):
 1. **Desmistificação de Ariados e Correção de Regras Críticas:**
    - *Agulha Secreta (Covert Needle)* NÃO é uma habilidade passiva! É um ataque que custa 3 energias incolores (`[C][C][C]`). Sem aceleração de energia e com Fraqueza a Luta x2 (morre para 1 hit do Landorus), Ariados foi rebaixado para **Armadilha / Fichário**.
@@ -105,6 +120,7 @@ Consulte o documento dedicado [`docs/analise_profunda_matchups_e_estrategias.md`
 - 📋 [Planejamento de Matchups](file:///c:/dev/prereleasepoke/docs/planning/plano_aprofundamento_matchups.md) — Rastreabilidade técnica.
 
 ### 🎥 Dossiês Individuais por Fonte e Criador
+- 🌐 [Dossiê da Comunidade & Guia de Mercado Pós-Lançamento](file:///c:/dev/prereleasepoke/docs/comunidade/analise_comunidade_e_guia_pos_lancamento.md) — Síntese de Bugado Playz, VINTCG, TiuSam, r/PTCGL e TCGplayer com checklist oficial de 103 cartas.
 - 👻 [Canal Fantasma Cinza - Perfil e Linha Editorial](file:///c:/dev/prereleasepoke/docs/canais/fantasma_cinza_perfil.md) — Visão geral da filosofia técnica de Igor Donini.
 - 🔴 [Vídeo 1: Análise Completa da Coleção (VINTCG - Felipe Araújo)](file:///c:/dev/prereleasepoke/docs/videos/01_analise_completa_reinado_delta_vintcg.md) — Análise dos EXs, Megas e impacto no LAIC.
 - 🟡 [Vídeo 2: Guia de Decks e Melhores Pulls (TrustYourPilot)](file:///c:/dev/prereleasepoke/docs/videos/02_guia_prerelease_trustyourpilot.md) — Dissecação das listas de 40 cartas, tier list e pulls.
@@ -122,6 +138,20 @@ Consulte o documento dedicado [`docs/analise_profunda_matchups_e_estrategias.md`
 
 ## 🛠️ Histórico de Atualizações
 
+- **2026-10-30 (v1.7.0):**
+  - Mapeamento e auditoria da expansão internacional oficial *Delta Reign* (103 cartas regulares + 38 secretas).
+  - Atualização dos códigos numéricos oficiais (DLR) em todo o banco de dados e motor de pulls.
+  - Validação dos 4 baralhos oficiais de 40 cartas via fontes da comunidade (r/PTCGL, Bugado Playz, VINTCG, TiuSam).
+  - Incorporação da análise de mercado do TCGplayer com destaque para o staple *Adventuring Lantern* (090/103) no kit Magmortar.
+  - Recompilação do pacote mobile standalone `assistente_offline.html` (158.4 KB).
+- **2026-10-30 (v1.6.1):**
+  - Auditoria profunda de regras: desmistificação de Ariados (*Covert Needle* é ataque de 3 incolores, não habilidade) e reclassificação de Vespiquen para Fichário Total.
+  - Inclusão do combo *Cacturne + Floresta da Vitalidade* como predador natural dos Gênios.
+  - Refinamento do ciclo autolimpante do *Bug Out* e prioridade de abertura com Surskit *Multiplicar*.
+- **2026-10-30 (v1.6.0):**
+  - Calibração física oficial dos 4 kits de 40 cartas (remoção de cartas inexistentes como Ultra Ball no Masquerain; inclusão de 3 Druddigon no Kommo-o e 3 Lanternas no Mag-Vire).
+  - Blindagem estrita dos 16 insetos (`core: true`) no deck de Masquerain.
+  - Catálogo de pulls realista sem palpites fantasiosos.
 - **2026-10-24 (v1.5.0):**
   - Implementação do empacotador `empacotar_celular.py` gerando o arquivo único standalone `assistente_offline.html` (150 KB) que roda no celular sem instalar nada e offline em Modo Avião.
   - Atualização para o formato físico nacional (Copag): 10 boosters de 6 cartas (pool de 60 cartas abertas).
